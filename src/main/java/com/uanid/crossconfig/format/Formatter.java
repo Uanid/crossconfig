@@ -1,61 +1,48 @@
 package com.uanid.crossconfig.format;
 
+import com.uanid.crossconfig.node.ConfigNode;
+import com.uanid.crossconfig.rawdata.RawData;
+import com.uanid.crossconfig.type.Type;
+import com.uanid.crossconfig.util.StringUtils;
+
 import java.util.List;
 
 /**
  * @author uanid
  * @since 2019-05-19
  */
-public abstract class Formatter {
+public class Formatter {
 
-    public Object parse(List<String> lines) throws NotParsableException {
-        StringBuilder sb = new StringBuilder();
-        for (String line : lines) {
-            sb.append(line);
-        }
-        return this.parse(sb.toString());
+    private FormatterType formatterType;
+    private FormatHandler formatHandler;
+
+    public Formatter(FormatterType formatterType, FormatHandler formatHandler) {
+        this.formatterType = formatterType;
+        this.formatHandler = formatHandler;
     }
 
-    public Object parse(String str) throws NotParsableException {
+    public ConfigNode parse(RawData rawData) throws NotParsableException {
         try {
-            return this.parse0(str);
+            return formatHandler.parse(rawData);
         } catch (Exception e) {
             throw new NotParsableException("Exception caught while parsing a string", e);
         }
     }
 
-    public void dump(Object config) throws NotDumpableException {
-        if (this.isDumpable()) {
-            try {
-                this.dump0(config);
-            } catch (Exception e) {
-                throw new NotDumpableException("Exception caught while dumping a config object", e);
-            }
-        } else {
-            throw new NotDumpableException("Not dumpable data accessor");
+    public RawData dump(ConfigNode configNode) throws NotDumpableException {
+        try {
+            return formatHandler.dump(configNode);
+        } catch (Exception e) {
+            throw new DumpFailException("Exception caught while dumping a config object", e);
         }
     }
 
-    public abstract boolean isDumpable();
-
-    public abstract String dump0(Object config);
-
-    public abstract Object parse0(String str);
-
-    //이게 작명이 진짜 좋은건가?
-    public String getInfo() {
-        return this.getName() + "-" + this.getFormatInfo();
+    public FormatterType getFormatterType() {
+        return formatterType;
     }
 
-    //이게 작명이 진짜 좋은건가? 2
-    public String getFormatInfo() {
-        return this.getFormatName() + "/" + this.getFormatVersion();
+    public DataFormatType getDataFormatType() {
+        return formatHandler.getDataFormatType();
     }
-
-    public abstract String getName();
-
-    public abstract String getFormatName();
-
-    public abstract String getFormatVersion();
 
 }
