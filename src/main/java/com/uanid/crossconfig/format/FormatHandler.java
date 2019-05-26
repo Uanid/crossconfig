@@ -11,19 +11,26 @@ public abstract class FormatHandler {
         this.dataFormatType = dataFormatType;
     }
 
-    public abstract ConfigNode parse(RawData rawData) throws Exception;
-
-    public RawData dump(ConfigNode configNode) throws Exception{
-        if (this.isDumpable()) {
-            return this.dump0(configNode);
-        } else {
-            throw new NotDumpableException("Not dumpable data format");
+    public final ConfigNode parse(RawData rawData) throws ParseFailException {
+        try {
+            return parse0(rawData);
+        } catch (Exception e) {
+            throw new ParseFailException("Dump fail because of " + e.getMessage(), e);
         }
     }
 
-    public abstract RawData dump0(ConfigNode configNode);
 
-    public abstract boolean isDumpable();
+    public final RawData dump(ConfigNode configNode) throws DumpFailException {
+        try {
+            return dump0(configNode);
+        } catch (Exception e) {
+            throw new DumpFailException("Dump fail because of " + e.getMessage(), e);
+        }
+    }
+
+    protected abstract ConfigNode parse0(RawData rawData) throws Exception;
+
+    protected abstract RawData dump0(ConfigNode configNode) throws Exception;
 
     public DataFormatType getDataFormatType() {
         return dataFormatType;

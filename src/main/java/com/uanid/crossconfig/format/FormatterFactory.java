@@ -1,6 +1,7 @@
 package com.uanid.crossconfig.format;
 
 import com.uanid.crossconfig.exception.DuplicatedKeyException;
+import com.uanid.crossconfig.format.impl.IniFormatterProvider;
 import com.uanid.crossconfig.format.impl.JsonFormatterProvider;
 import com.uanid.crossconfig.format.impl.YamlFormatterProvider;
 import com.uanid.crossconfig.util.MatchType;
@@ -38,6 +39,7 @@ public final class FormatterFactory {
     private void initRegisterFactory() {
         this.registerFactory(YamlFormatterProvider.getInstance());
         this.registerFactory(JsonFormatterProvider.getInstance());
+        this.registerFactory(IniFormatterProvider.getInstance());
     }
 
     public void registerFactory(FormatterProvider provider) {

@@ -3,19 +3,15 @@ package com.uanid.crossconfig.rawdata;
 public class TextRawData implements RawData<CharSequence> {
     private static final RawDataType RAW_DATA_TYPE = new RawDataType("TextData", CharSequence.class);
 
+    private CharSequence charSequence;
+
+    public TextRawData(CharSequence text) {
+        this.charSequence = text;
+    }
+
     @Override
     public CharSequence getData() {
-        return null;
-    }
-
-    @Override
-    public String getMimeType() {
-        return null;
-    }
-
-    @Override
-    public String getExtension() {
-        return null;
+        return charSequence;
     }
 
     @Override

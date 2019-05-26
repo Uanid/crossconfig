@@ -30,18 +30,13 @@ public class IniFormatHandler extends FormatHandler {
     }
 
     @Override
-    public ConfigNode parse(RawData rawData) throws Exception {
+    protected ConfigNode parse0(RawData rawData) throws Exception {
         return null;
     }
 
     @Override
-    public RawData dump0(ConfigNode configNode) {
+    protected RawData dump0(ConfigNode configNode) {
         return null;
-    }
-
-    @Override
-    public boolean isDumpable() {
-        return true;
     }
 
 }

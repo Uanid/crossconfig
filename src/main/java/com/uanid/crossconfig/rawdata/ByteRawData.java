@@ -1,22 +1,23 @@
 package com.uanid.crossconfig.rawdata;
 
-public class ByteRawData implements RawData<Byte[]> {
-    private static final RawDataType RAW_DATA_TYPE = new RawDataType("ByteData", Byte.class);
+import java.nio.ByteBuffer;
 
+public class ByteRawData implements RawData<ByteBuffer> {
+    private static final RawDataType RAW_DATA_TYPE = new RawDataType("ByteData", ByteBuffer.class);
 
-    @Override
-    public Byte[] getData() {
-        return null;
+    private ByteBuffer byteBuffer;
+
+    public ByteRawData(ByteBuffer byteBuffer) {
+        this.byteBuffer = byteBuffer;
+    }
+
+    public ByteRawData(byte[] bytes) {
+        this.byteBuffer = ByteBuffer.wrap(bytes);
     }
 
     @Override
-    public String getMimeType() {
-        return null;
-    }
-
-    @Override
-    public String getExtension() {
-        return null;
+    public ByteBuffer getData() {
+        return byteBuffer;
     }
 
     @Override

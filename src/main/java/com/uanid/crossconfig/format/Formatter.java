@@ -21,19 +21,19 @@ public class Formatter {
         this.formatHandler = formatHandler;
     }
 
-    public ConfigNode parse(RawData rawData) throws NotParsableException {
+    public ConfigNode parse(RawData rawData) throws ParseFailException {
         try {
             return formatHandler.parse(rawData);
         } catch (Exception e) {
-            throw new NotParsableException("Exception caught while parsing a string", e);
+            throw new ParseFailException("Exception caught while parsing a rawData", e);
         }
     }
 
-    public RawData dump(ConfigNode configNode) throws NotDumpableException {
+    public RawData dump(ConfigNode configNode) throws DumpFailException {
         try {
             return formatHandler.dump(configNode);
         } catch (Exception e) {
-            throw new DumpFailException("Exception caught while dumping a config object", e);
+            throw new DumpFailException("Exception caught while dumping a configNode", e);
         }
     }
 

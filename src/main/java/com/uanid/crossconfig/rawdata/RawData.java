@@ -8,12 +8,6 @@ public interface RawData<T> {
     @NotNull
     T getData();
 
-    @Nullable
-    String getMimeType();
-
-    @Nullable
-    String getExtension();
-
     @NotNull
     RawDataType getRawDataType();
 

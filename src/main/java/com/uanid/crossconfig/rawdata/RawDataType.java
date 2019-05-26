@@ -2,8 +2,6 @@ package com.uanid.crossconfig.rawdata;
 
 import com.uanid.crossconfig.type.Type;
 
-import java.util.Objects;
-
 public class RawDataType implements Type {
 
     private String name;
