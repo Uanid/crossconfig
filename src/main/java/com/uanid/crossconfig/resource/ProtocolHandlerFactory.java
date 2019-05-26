@@ -1,4 +1,5 @@
 package com.uanid.crossconfig.resource;
 
-public class AbstractResource {
+public class ProtocolHandlerFactory {
+
 }
