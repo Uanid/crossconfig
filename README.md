@@ -1,5 +1,7 @@
 # CrossConfig
 
+![strategy](https://img.shields.io/badge/strategy-git--flow-orange.svg)
+
 다양한 텍스트 포맷을 지원하는 Java 8+ 전용 범용 Config library.
 
 모듈 형태로 다양한 텍스트 포맷과 접근 프로토콜들을 지원할 수 있게 할 계획
