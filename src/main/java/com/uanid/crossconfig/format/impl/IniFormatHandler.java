@@ -29,14 +29,20 @@ public class IniFormatHandler extends FormatHandler {
         ini.setConfig(iniConfig);
     }
 
+
     @Override
-    protected ConfigNode parse0(RawData rawData) throws Exception {
+    protected boolean isValidRawData(RawData rawData) {
+
+        return false;
+    }
+
+    @Override
+    protected ConfigNode parseProcess(RawData rawData) throws Exception {
         return null;
     }
 
     @Override
-    protected RawData dump0(ConfigNode configNode) {
+    protected RawData dumpProcess(ConfigNode configNode) throws Exception {
         return null;
     }
-
 }

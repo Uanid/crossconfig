@@ -21,30 +21,19 @@ public class JsonFormatHandler extends FormatHandler {
     }
 
     @Override
-    protected ConfigNode parse0(RawData rawData) throws IOException {
-        //TODO: 예상 flow 시나리오
-        //1. rawdata가 내가 원하는 타입인지 검증
-        //2. readTree로 JSONNODE로 가져옮
-        //3. JSONNODE에서 CONFIGNODE로 변환
-        //즉 이 handler는 flow관리자 역할을 하도록 만듦
-        validateRawData(rawData);
-
+    protected ConfigNode parseProcess(RawData rawData) throws IOException {
         RawData<CharSequence> textRawData = rawData;
         JsonNode jsonNode = mapper.readTree(textRawData.getData().toString());
-
-        //3번 작업이 필요함
-
         return null;
-    }
-    
-    private void validateRawData(RawData rawData) {
-        if (rawData.getRawDataType().getDataClass() != TARGET_RAW_DATA_CLASS) {
-            throw new ClassCastException(rawData.getRawDataType().getDataClass().getCanonicalName() + " is not instance of " + TARGET_RAW_DATA_CLASS.getCanonicalName());
-        }
     }
 
     @Override
-    protected RawData dump0(ConfigNode configNode) {
+    protected boolean isValidRawData(RawData rawData) {
+        return rawData.getRawDataType().getDataClass() != TARGET_RAW_DATA_CLASS;
+    }
+
+    @Override
+    protected RawData dumpProcess(ConfigNode configNode) {
         return null;
     }
 }

@@ -1,14 +1,11 @@
 package com.uanid.crossconfig.format.impl;
 
-import com.uanid.crossconfig.format.DataFormatType;
+import com.uanid.crossconfig.format.DefaultFormatter;
 import com.uanid.crossconfig.format.Formatter;
 import com.uanid.crossconfig.format.FormatterProvider;
 import com.uanid.crossconfig.format.FormatterType;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class YamlFormatterProvider extends FormatterProvider {
+public class YamlFormatterProvider implements FormatterProvider {
     private static final FormatterType FORMATTER_TYPE = new FormatterType("DefaultSnakeYAML", "SnakeYaml");
 
     public static YamlFormatterProvider getInstance() {
@@ -20,7 +17,7 @@ public class YamlFormatterProvider extends FormatterProvider {
 
     @Override
     public Formatter getFormatter() {
-        return new Formatter(FORMATTER_TYPE, new YamlFormatHandler());
+        return new DefaultFormatter(FORMATTER_TYPE, new YamlFormatHandler());
     }
 
     @Override

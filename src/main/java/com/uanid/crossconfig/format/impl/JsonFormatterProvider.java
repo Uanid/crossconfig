@@ -1,13 +1,11 @@
 package com.uanid.crossconfig.format.impl;
 
+import com.uanid.crossconfig.format.DefaultFormatter;
 import com.uanid.crossconfig.format.Formatter;
 import com.uanid.crossconfig.format.FormatterProvider;
 import com.uanid.crossconfig.format.FormatterType;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class JsonFormatterProvider extends FormatterProvider {
+public class JsonFormatterProvider implements FormatterProvider {
     private static final FormatterType FORMATTER_TYPE = new FormatterType("DefaultJacksonJson", "JacksonJson");
 
     public static JsonFormatterProvider getInstance() {
@@ -19,7 +17,7 @@ public class JsonFormatterProvider extends FormatterProvider {
 
     @Override
     public Formatter getFormatter() {
-        return new Formatter(FORMATTER_TYPE, new JsonFormatHandler());
+        return new DefaultFormatter(FORMATTER_TYPE, new JsonFormatHandler());
     }
 
     @Override

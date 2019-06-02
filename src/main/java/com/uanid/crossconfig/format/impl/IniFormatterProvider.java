@@ -1,10 +1,11 @@
 package com.uanid.crossconfig.format.impl;
 
+import com.uanid.crossconfig.format.DefaultFormatter;
 import com.uanid.crossconfig.format.Formatter;
 import com.uanid.crossconfig.format.FormatterProvider;
 import com.uanid.crossconfig.format.FormatterType;
 
-public class IniFormatterProvider extends FormatterProvider {
+public class IniFormatterProvider implements FormatterProvider {
     private static final FormatterType FORMATTER_TYPE = new FormatterType("DefaultIni4J", "Ini4J", "INI");
 
     public static IniFormatterProvider getInstance() {
@@ -16,7 +17,7 @@ public class IniFormatterProvider extends FormatterProvider {
 
     @Override
     public Formatter getFormatter() {
-        return new Formatter(FORMATTER_TYPE, new IniFormatHandler());
+        return new DefaultFormatter(FORMATTER_TYPE, new IniFormatHandler());
     }
 
     @Override
