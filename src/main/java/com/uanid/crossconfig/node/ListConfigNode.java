@@ -1,10 +1,15 @@
 package com.uanid.crossconfig.node;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ListConfigNode extends ConfigNode<List<ConfigNode>> {
+public class ListConfigNode implements ConfigNode<List<ConfigNode>> {
 
     private List<ConfigNode> list;
+
+    public ListConfigNode() {
+        this(new ArrayList<>());
+    }
 
     public ListConfigNode(List<ConfigNode> list) {
         this.list = list;
@@ -12,12 +17,17 @@ public class ListConfigNode extends ConfigNode<List<ConfigNode>> {
 
     @Override
     public List<ConfigNode> getValue() {
-        return null;
+        return new ArrayList<>(list);
     }
 
     @Override
     public NodeType getNodeType() {
         return NodeType.LIST;
+    }
+
+    @Override
+    public boolean isContainerNode() {
+        return true;
     }
 
     public void add(ConfigNode node) {
@@ -38,5 +48,10 @@ public class ListConfigNode extends ConfigNode<List<ConfigNode>> {
 
     public void remove(ConfigNode node) {
         list.remove(node);
+    }
+
+    @Override
+    public String toString() {
+        return "List{" + list + '}';
     }
 }
