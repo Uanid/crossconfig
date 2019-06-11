@@ -1,5 +1,6 @@
 package com.uanid.crossconfig.format;
 
+import com.uanid.crossconfig.format.datahandler.DataFormatType;
 import com.uanid.crossconfig.node.ConfigNode;
 import com.uanid.crossconfig.rawdata.RawData;
 

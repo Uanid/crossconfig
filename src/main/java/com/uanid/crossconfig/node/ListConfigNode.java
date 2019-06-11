@@ -8,11 +8,11 @@ public class ListConfigNode implements ConfigNode<List<ConfigNode>> {
     private List<ConfigNode> list;
 
     public ListConfigNode() {
-        this(new ArrayList<>());
+        this.list = new ArrayList<>();
     }
 
     public ListConfigNode(List<ConfigNode> list) {
-        this.list = list;
+        this.list = new ArrayList<>(list);
     }
 
     @Override
@@ -52,6 +52,6 @@ public class ListConfigNode implements ConfigNode<List<ConfigNode>> {
 
     @Override
     public String toString() {
-        return "List{" + list + '}';
+        return "ListNode{" + list + "}";
     }
 }

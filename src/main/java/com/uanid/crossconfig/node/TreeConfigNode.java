@@ -1,9 +1,8 @@
 package com.uanid.crossconfig.node;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
-public class TreeConfigNode implements ConfigNode<Map<ConfigNode, ConfigNode>> {
+public class TreeConfigNode implements ConfigNode<Map<PrimitiveConfigNode, ConfigNode>> {
 
     private Map<PrimitiveConfigNode, ConfigNode> map;
 
@@ -11,8 +10,12 @@ public class TreeConfigNode implements ConfigNode<Map<ConfigNode, ConfigNode>> {
         this.map = new LinkedHashMap<>();
     }
 
+    public TreeConfigNode(Map<PrimitiveConfigNode, ConfigNode> map) {
+        this.map = new LinkedHashMap<>(map);
+    }
+
     @Override
-    public Map<ConfigNode, ConfigNode> getValue() {
+    public Map<PrimitiveConfigNode, ConfigNode> getValue() {
         return new LinkedHashMap<>(map);
     }
 
@@ -24,6 +27,20 @@ public class TreeConfigNode implements ConfigNode<Map<ConfigNode, ConfigNode>> {
     @Override
     public boolean isContainerNode() {
         return true;
+    }
+
+    public ConfigNode get(String key) {
+        return map.get(new PrimitiveConfigNode<>(key));
+    }
+
+    // TODO: 이거 불변 set맞음?
+    public Set<PrimitiveConfigNode> getKeys() {
+        return map.keySet();
+    }
+
+    // TODO: 이거 불변 collection맞음?
+    public Collection<ConfigNode> getValues() {
+        return map.values();
     }
 
     public ConfigNode get(PrimitiveConfigNode key) {
@@ -38,11 +55,12 @@ public class TreeConfigNode implements ConfigNode<Map<ConfigNode, ConfigNode>> {
         map.put(key, value);
     }
 
-//    public Set<String>
-
+    public Set<PrimitiveConfigNode> keySet() {
+        return map.keySet();
+    }
 
     @Override
     public String toString() {
-        return "Tree{" + map + '}';
+        return "TreeNode" + map;
     }
 }

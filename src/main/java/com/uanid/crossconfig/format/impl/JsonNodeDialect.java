@@ -1,4 +1,4 @@
-package com.uanid.crossconfig.format.convert.impl;
+package com.uanid.crossconfig.format.impl;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.*;
@@ -19,7 +19,7 @@ public class JsonNodeDialect implements Dialect<JsonNode, ValueNode, ArrayNode, 
         } else if (type == JsonNodeType.OBJECT) {
             return NodeType.TREE;
         } else {
-            return NodeType.VALUE;
+            return NodeType.PRIMITIVE;
         }
     }
 

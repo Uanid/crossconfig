@@ -43,7 +43,7 @@ public class FormatterType implements Type {
     }
 
     public String getInfo() {
-        return String.format("%s-%s", name, alias.toString());
+        return name + ", " + alias.toString();
     }
 
     @Override
@@ -59,7 +59,7 @@ public class FormatterType implements Type {
         return name.equals(that.name) && alias.equals(that.alias);
     }
 
-    public MatchType matchType(String rawName, boolean implicitlyMatch) {
+    public MatchType compareMatchType(String rawName, boolean implicitlyMatch) {
         MatchType matchType = MatchType.matchNames(rawName, getName(), getAlias());
         if (implicitlyMatch) {
             String lowerName = rawName.toLowerCase();

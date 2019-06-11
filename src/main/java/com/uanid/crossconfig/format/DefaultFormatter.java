@@ -1,11 +1,9 @@
 package com.uanid.crossconfig.format;
 
+import com.uanid.crossconfig.format.datahandler.DataFormatType;
+import com.uanid.crossconfig.format.datahandler.FormatHandler;
 import com.uanid.crossconfig.node.ConfigNode;
 import com.uanid.crossconfig.rawdata.RawData;
-import com.uanid.crossconfig.type.Type;
-import com.uanid.crossconfig.util.StringUtils;
-
-import java.util.List;
 
 /**
  * @author uanid

@@ -1,7 +1,6 @@
 package com.uanid.crossconfig.format;
 
 import com.uanid.crossconfig.exception.DuplicatedKeyException;
-import com.uanid.crossconfig.format.impl.IniFormatterProvider;
 import com.uanid.crossconfig.format.impl.JsonFormatterProvider;
 import com.uanid.crossconfig.format.impl.YamlFormatterProvider;
 import com.uanid.crossconfig.util.MatchType;
@@ -15,14 +14,14 @@ import java.util.Map;
  * @author uanid
  * @since 2019-05-19
  */
-public final class FormatterFactory {
+public final class FormatterManager {
     private static final String DEFAULT_FORMATTER_NAME = "DefaultSnakeYAML";
 
     private static class SingletonHolder {
-        private static FormatterFactory INSTANCE = new FormatterFactory();
+        private static FormatterManager INSTANCE = new FormatterManager();
     }
 
-    public static FormatterFactory getInstance() {
+    public static FormatterManager getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
@@ -30,7 +29,7 @@ public final class FormatterFactory {
     private List<FormatterProvider> providerContainer;
     private Map<String, FormatterProvider> cachedProviderContainer;
 
-    private FormatterFactory() {
+    private FormatterManager() {
         this.providerContainer = new ArrayList<>();
         this.cachedProviderContainer = new HashMap<>();
         this.initRegisterFactory();
@@ -39,7 +38,7 @@ public final class FormatterFactory {
     private void initRegisterFactory() {
         this.registerFactory(YamlFormatterProvider.getInstance());
         this.registerFactory(JsonFormatterProvider.getInstance());
-        this.registerFactory(IniFormatterProvider.getInstance());
+        //this.registerFactory(IniFormatterProvider.getInstance());
     }
 
     public void registerFactory(FormatterProvider provider) {
@@ -93,7 +92,7 @@ public final class FormatterFactory {
     private FormatterProvider lookup(String formatterName, boolean implicitlyMatch) {
         FormatterProvider formatterProvider = null;
         for (FormatterProvider provider : providerContainer) {
-            MatchType matchType = provider.getFormatterType().matchType(formatterName, implicitlyMatch);
+            MatchType matchType = provider.getFormatterType().compareMatchType(formatterName, implicitlyMatch);
 
             if (matchType == MatchType.PRIMARY) {
                 formatterProvider = provider;
