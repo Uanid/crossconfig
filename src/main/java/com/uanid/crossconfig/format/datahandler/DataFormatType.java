@@ -1,9 +1,7 @@
-package com.uanid.crossconfig.format;
+package com.uanid.crossconfig.format.datahandler;
 
 import com.uanid.crossconfig.type.Type;
 import com.uanid.crossconfig.util.Validate;
-
-import java.util.Objects;
 
 /**
  * @author uanid
@@ -33,7 +31,6 @@ public class DataFormatType implements Type {
     public String getVersion() {
         return version;
     }
-
 
     public String getInfo() {
         return String.format("%s/%s", name, version);

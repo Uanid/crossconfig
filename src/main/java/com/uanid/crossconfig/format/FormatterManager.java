@@ -42,7 +42,7 @@ public final class FormatterManager {
     }
 
     public void registerFactory(FormatterProvider provider) {
-        FormatterProvider result = this.findProvider(provider.getFormatterType());
+        FormatterProvider result = this.findProvider(provider.getFormatterReturnType());
         if (result == null) {
             this.cachedProviderContainer.clear();
             this.providerContainer.add(provider);
@@ -53,7 +53,7 @@ public final class FormatterManager {
 
     private FormatterProvider findProvider(FormatterType formatterType) {
         for (FormatterProvider provider : providerContainer) {
-            if (provider.getFormatterType().equals(formatterType)) {
+            if (provider.getFormatterReturnType().equals(formatterType)) {
                 return provider;
             }
         }
@@ -92,7 +92,7 @@ public final class FormatterManager {
     private FormatterProvider lookup(String formatterName, boolean implicitlyMatch) {
         FormatterProvider formatterProvider = null;
         for (FormatterProvider provider : providerContainer) {
-            MatchType matchType = provider.getFormatterType().compareMatchType(formatterName, implicitlyMatch);
+            MatchType matchType = provider.getFormatterReturnType().compareMatchType(formatterName, implicitlyMatch);
 
             if (matchType == MatchType.PRIMARY) {
                 formatterProvider = provider;

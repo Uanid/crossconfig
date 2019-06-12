@@ -4,5 +4,5 @@ public interface FormatterProvider {
 
     Formatter getFormatter();
 
-    FormatterType getFormatterType();
+    FormatterType getFormatterReturnType();
 }
