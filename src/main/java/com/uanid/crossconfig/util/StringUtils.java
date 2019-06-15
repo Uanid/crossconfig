@@ -16,4 +16,8 @@ public class StringUtils {
     public static List<String> convertLowerCaseList(List<String> lines){
         return lines.stream().map(str -> str.toLowerCase()).collect(Collectors.toList());
     }
+
+    public static String withoutBlanks(String s){
+        return s.replace(" ", "");
+    }
 }

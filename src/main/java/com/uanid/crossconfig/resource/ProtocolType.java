@@ -1,6 +1,6 @@
 package com.uanid.crossconfig.resource;
 
-import com.uanid.crossconfig.type.Type;
+import com.uanid.crossconfig.common.Type;
 import com.uanid.crossconfig.util.Validate;
 
 public class ProtocolType implements Type {

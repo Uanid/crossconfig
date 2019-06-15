@@ -1,10 +1,8 @@
 package com.uanid.crossconfig.format;
 
-import java.util.List;
+public interface FormatterProvider {
 
-public abstract class FormatterProvider {
+    Formatter getFormatter();
 
-    public abstract Formatter getFormatter();
-
-    public abstract FormatterType getFormatterType();
+    FormatterType getFormatterReturnType();
 }

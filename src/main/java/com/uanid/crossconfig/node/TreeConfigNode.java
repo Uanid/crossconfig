@@ -1,14 +1,22 @@
 package com.uanid.crossconfig.node;
 
-import java.util.Map;
+import java.util.*;
 
-public class TreeConfigNode extends ConfigNode<Map<ConfigNode, ConfigNode>> {
+public class TreeConfigNode implements ConfigNode<Map<PrimitiveConfigNode, ConfigNode>> {
 
-    private Map<ValueConfigNode, ConfigNode> map;
+    private Map<PrimitiveConfigNode, ConfigNode> map;
+
+    public TreeConfigNode() {
+        this.map = new LinkedHashMap<>();
+    }
+
+    public TreeConfigNode(Map<PrimitiveConfigNode, ConfigNode> map) {
+        this.map = new LinkedHashMap<>(map);
+    }
 
     @Override
-    public Map<ConfigNode, ConfigNode> getValue() {
-        return null;
+    public Map<PrimitiveConfigNode, ConfigNode> getValue() {
+        return new LinkedHashMap<>(map);
     }
 
     @Override
@@ -16,15 +24,39 @@ public class TreeConfigNode extends ConfigNode<Map<ConfigNode, ConfigNode>> {
         return NodeType.TREE;
     }
 
-    public ConfigNode get(ValueConfigNode key) {
+    @Override
+    public boolean isContainerNode() {
+        return true;
+    }
+
+    public ConfigNode get(String key) {
+        return map.get(new PrimitiveConfigNode<>(key));
+    }
+
+    // TODO: 이거 불변 set맞음?
+    public Set<PrimitiveConfigNode> getKeys() {
+        return map.keySet();
+    }
+
+    // TODO: 이거 불변 collection맞음?
+    public Collection<ConfigNode> getValues() {
+        return map.values();
+    }
+
+    public ConfigNode get(PrimitiveConfigNode key) {
         return map.get(key);
     }
 
-    public void remove(ValueConfigNode key){
+    public void remove(PrimitiveConfigNode key) {
         map.remove(key);
     }
 
-    public void put(ValueConfigNode key, ConfigNode value){
+    public void put(PrimitiveConfigNode key, ConfigNode value) {
         map.put(key, value);
+    }
+
+    @Override
+    public String toString() {
+        return "TreeNode" + map;
     }
 }

@@ -1,7 +1,10 @@
 package com.uanid.crossconfig.node;
 
-public abstract class ConfigNode<T> {
-    public abstract T getValue();
+public interface ConfigNode<T> {
+    T getValue();
 
-    public abstract NodeType getNodeType();
+    NodeType getNodeType();
+
+    boolean isContainerNode();
+
 }

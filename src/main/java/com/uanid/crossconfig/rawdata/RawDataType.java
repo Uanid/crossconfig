@@ -1,6 +1,6 @@
 package com.uanid.crossconfig.rawdata;
 
-import com.uanid.crossconfig.type.Type;
+import com.uanid.crossconfig.common.Type;
 
 public class RawDataType implements Type {
 

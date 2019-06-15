@@ -1,7 +1,6 @@
 package com.uanid.crossconfig.format;
 
-import com.uanid.crossconfig.type.Type;
-import com.uanid.crossconfig.util.CommonUtils;
+import com.uanid.crossconfig.common.Type;
 import com.uanid.crossconfig.util.MatchType;
 import com.uanid.crossconfig.util.StringUtils;
 import com.uanid.crossconfig.util.Validate;
@@ -9,7 +8,6 @@ import com.uanid.crossconfig.util.Validate;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 public class FormatterType implements Type {
 
@@ -43,7 +41,7 @@ public class FormatterType implements Type {
     }
 
     public String getInfo() {
-        return String.format("%s-%s", name, alias.toString());
+        return name + ", " + alias.toString();
     }
 
     @Override
@@ -59,7 +57,7 @@ public class FormatterType implements Type {
         return name.equals(that.name) && alias.equals(that.alias);
     }
 
-    public MatchType matchType(String rawName, boolean implicitlyMatch) {
+    public MatchType compareMatchType(String rawName, boolean implicitlyMatch) {
         MatchType matchType = MatchType.matchNames(rawName, getName(), getAlias());
         if (implicitlyMatch) {
             String lowerName = rawName.toLowerCase();

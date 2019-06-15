@@ -1,42 +1,51 @@
 package com.uanid.crossconfig.format.impl;
 
-import com.uanid.crossconfig.format.DataFormatType;
-import com.uanid.crossconfig.format.FormatHandler;
+import com.uanid.crossconfig.common.BufferedByteOutputStream;
+import com.uanid.crossconfig.format.convert.Converter;
+import com.uanid.crossconfig.format.datahandler.DataFormatType;
+import com.uanid.crossconfig.format.datahandler.FormatHandler;
 import com.uanid.crossconfig.node.ConfigNode;
 import com.uanid.crossconfig.rawdata.RawData;
-import org.ini4j.Config;
+import com.uanid.crossconfig.rawdata.TextRawData;
 import org.ini4j.Ini;
-import org.yaml.snakeyaml.DumperOptions;
-import org.yaml.snakeyaml.Yaml;
-import org.yaml.snakeyaml.constructor.BaseConstructor;
-import org.yaml.snakeyaml.constructor.Constructor;
-import org.yaml.snakeyaml.representer.Representer;
 
+import java.io.ByteArrayInputStream;
 import java.nio.charset.Charset;
 
 public class IniFormatHandler extends FormatHandler {
     private static final DataFormatType DATA_FORMAT_TYPE = new DataFormatType("INI");
 
-    private Ini ini;
+    private Converter<Ini, ConfigNode> toConfigNodeConverter;
+    private Converter<ConfigNode, Ini> toIniNodeConverter;
 
     protected IniFormatHandler() {
         super(DATA_FORMAT_TYPE);
-        this.ini = new Ini();
-
-        //TODO: charset을 option등을 통해 주입받게...
-        Config iniConfig = new Config();
-        iniConfig.setFileEncoding(Charset.forName("UTF-8"));
-        ini.setConfig(iniConfig);
+        this.toConfigNodeConverter = new IniNodeConverter();
+        this.toIniNodeConverter = new ConfigToIniNodeConverter();
     }
 
     @Override
-    protected ConfigNode parse0(RawData rawData) throws Exception {
-        return null;
+    protected boolean isValidRawData(RawData rawData) {
+        return rawData.getRawDataType().equals(TextRawData.RAW_DATA_TYPE);
     }
 
     @Override
-    protected RawData dump0(ConfigNode configNode) {
-        return null;
+    protected ConfigNode parseProcess(RawData rawData) throws Exception {
+        Ini ini = new Ini();
+
+        String data = rawData.getData().toString();
+        ini.load(new ByteArrayInputStream(data.getBytes()));
+        return toConfigNodeConverter.convert(ini);
     }
 
+    @Override
+    protected RawData dumpProcess(ConfigNode configNode) throws Exception {
+        Ini ini = toIniNodeConverter.convert(configNode);
+
+        BufferedByteOutputStream byteOutputStream = new BufferedByteOutputStream();
+        ini.getConfig().setFileEncoding(Charset.forName("UTF-8"));
+        ini.store(byteOutputStream);
+
+        return new TextRawData(new String(byteOutputStream.toByteArray(), "UTF-8"));
+    }
 }

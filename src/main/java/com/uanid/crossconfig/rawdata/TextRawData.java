@@ -1,7 +1,7 @@
 package com.uanid.crossconfig.rawdata;
 
 public class TextRawData implements RawData<CharSequence> {
-    private static final RawDataType RAW_DATA_TYPE = new RawDataType("TextData", CharSequence.class);
+    public static final RawDataType RAW_DATA_TYPE = new RawDataType("TextData", CharSequence.class);
 
     private CharSequence charSequence;
 
