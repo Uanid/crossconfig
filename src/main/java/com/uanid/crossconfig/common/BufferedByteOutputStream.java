@@ -3,19 +3,19 @@ package com.uanid.crossconfig.common;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class ByteOutputStream extends OutputStream {
+public class BufferedByteOutputStream extends OutputStream {
 
     private FlexibleByteArray byteArray;
 
-    public ByteOutputStream() {
+    public BufferedByteOutputStream() {
         this.byteArray = new FlexibleByteArray();
     }
 
-    public ByteOutputStream(int byteArraySize, int byteArrayGrowSize) {
+    public BufferedByteOutputStream(int byteArraySize, int byteArrayGrowSize) {
         this.byteArray = new FlexibleByteArray(byteArraySize, byteArrayGrowSize);
     }
 
-    public ByteOutputStream(FlexibleByteArray byteArray){
+    public BufferedByteOutputStream(FlexibleByteArray byteArray){
         this.byteArray = byteArray;
     }
 
