@@ -10,9 +10,12 @@
 	<version>0.1.0</version>
 	<modules>
 		<module>json-dataformat</module>
+		<module>ini-dataformat</module>
+		<module>yaml-dataformat</module>
+		<module>config-core</module>
 	</modules>
 	<name>cross-config</name>
-	<url>http://tpsw.or.kr</url>
+	<url>http://uanid.com</url>
 
 	<properties>
 		<maven.compiler.target>1.8</maven.compiler.target>
@@ -20,43 +23,6 @@
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.yaml</groupId>
-			<artifactId>snakeyaml</artifactId>
-			<version>1.24</version>
-		</dependency>
-		<dependency>
-			<groupId>org.ini4j</groupId>
-			<artifactId>ini4j</artifactId>
-			<version>0.5.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.typesafe</groupId>
-			<artifactId>config</artifactId>
-			<version>1.2.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.fasterxml.jackson.dataformat</groupId>
-			<artifactId>jackson-dataformat-xml</artifactId>
-			<version>2.9.8</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.dataformat</groupId>
-			<artifactId>jackson-dataformat-csv</artifactId>
-			<version>2.9.8</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.dataformat</groupId>
-			<artifactId>jackson-dataformat-properties</artifactId>
-			<version>2.9.8</version>
-		</dependency>
-		<dependency>
-			<groupId>com.typesafe</groupId>
-			<artifactId>config</artifactId>
-			<version>1.3.4</version>
-		</dependency>
-
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -80,6 +46,7 @@
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
+					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
 
