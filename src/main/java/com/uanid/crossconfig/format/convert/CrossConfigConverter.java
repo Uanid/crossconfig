@@ -3,7 +3,7 @@ package com.uanid.crossconfig.format.convert;
 import com.uanid.crossconfig.exception.ConfigException;
 import com.uanid.crossconfig.node.*;
 import com.uanid.crossconfig.util.CommonUtils;
-import com.uanid.crossconfig.util.Pair;
+import com.uanid.crossconfig.common.Pair;
 
 import java.util.LinkedHashMap;
 import java.util.stream.Collectors;
@@ -51,6 +51,6 @@ public class CrossConfigConverter implements Converter<ConfigNode, Object> {
     private Object convertTree(TreeConfigNode configNode) {
         return dialect.getTree(configNode).entrySet().stream()
                 .map(entry -> new Pair<>(entry.getKey(), this.convert(entry.getValue())))
-                .collect(Collectors.toMap(Pair::getKey, Pair::getValue, CommonUtils.getThroingMerger(), LinkedHashMap::new));
+                .collect(Collectors.toMap(Pair::getKey, Pair::getValue, CommonUtils.getThrowingMerger(), LinkedHashMap::new));
     }
 }

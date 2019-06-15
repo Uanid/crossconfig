@@ -18,12 +18,22 @@ public class Validate {
     }
 
     /**
-     * o1 == o2 : OK
-     * o1 != o2 : NO
+     * o1.equals(o2) == true : OK
+     * o1.equals(o2) == false: NO
      */
     public static void equal(Object o1, Object o2) {
+        if (!o1.equals(o2)) {
+            throw new NotEqualException(o1 + " must be equals(method) " + o2);
+        }
+    }
+
+    /**
+     * n1 == n2 : OK
+     * n1 != n2 : NO
+     */
+    public static void referenceEqual(Object o1, Object o2){
         if (o1 != o2) {
-            throw new NotEqualException(o1 + " != " + o2);
+            throw new NotEqualException(o1 + " must be reference-equals(==) " + o2);
         }
     }
 
