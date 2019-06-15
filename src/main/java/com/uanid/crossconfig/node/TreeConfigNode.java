@@ -55,10 +55,6 @@ public class TreeConfigNode implements ConfigNode<Map<PrimitiveConfigNode, Confi
         map.put(key, value);
     }
 
-    public Set<PrimitiveConfigNode> keySet() {
-        return map.keySet();
-    }
-
     @Override
     public String toString() {
         return "TreeNode" + map;

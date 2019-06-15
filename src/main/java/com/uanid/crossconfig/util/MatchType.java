@@ -17,7 +17,7 @@ public enum MatchType {
         }
     }
 
-    public static <T> boolean matchListOfItem(T source, List<T> aliasTarget) {
+    private static <T> boolean matchListOfItem(T source, List<T> aliasTarget) {
         int size = aliasTarget.size();
         for (int i = 0; i < size; i++) {
             if (aliasTarget.get(i).equals(source)) {

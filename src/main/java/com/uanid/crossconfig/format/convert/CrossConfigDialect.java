@@ -2,7 +2,7 @@ package com.uanid.crossconfig.format.convert;
 
 import com.uanid.crossconfig.node.*;
 import com.uanid.crossconfig.util.CommonUtils;
-import com.uanid.crossconfig.util.Pair;
+import com.uanid.crossconfig.common.Pair;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -34,7 +34,7 @@ public class CrossConfigDialect implements Dialect<ConfigNode, PrimitiveConfigNo
         Map<PrimitiveConfigNode, ConfigNode> preConvertedMap = treeConfigNode.getValue();
         Map<Object, ConfigNode> tree = preConvertedMap.entrySet().stream()
                 .map(entry -> new Pair<>(getValue(entry.getKey()), entry.getValue()))
-                .collect(Collectors.toMap(Pair::getKey, Pair::getValue, CommonUtils.getThroingMerger(), LinkedHashMap::new));
+                .collect(Collectors.toMap(Pair::getKey, Pair::getValue, CommonUtils.getThrowingMerger(), LinkedHashMap::new));
         return tree;
     }
 }

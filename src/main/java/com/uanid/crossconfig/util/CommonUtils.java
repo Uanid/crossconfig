@@ -1,15 +1,12 @@
 package com.uanid.crossconfig.util;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.function.Supplier;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
+import java.util.function.BinaryOperator;
 
 public class CommonUtils {
 
-    public static <T> Stream<T> asStream(Iterator<T> it) {
-        return null;
+    public static <T> BinaryOperator<T> getThrowingMerger() {
+        return (k, v) -> {
+            throw new IllegalStateException("duplicate key detected: " + k.toString());
+        };
     }
 }

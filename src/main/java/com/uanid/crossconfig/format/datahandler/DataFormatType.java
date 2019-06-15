@@ -1,6 +1,6 @@
 package com.uanid.crossconfig.format.datahandler;
 
-import com.uanid.crossconfig.type.Type;
+import com.uanid.crossconfig.common.Type;
 import com.uanid.crossconfig.util.Validate;
 
 /**

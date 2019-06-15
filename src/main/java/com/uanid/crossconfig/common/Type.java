@@ -1,4 +1,4 @@
-package com.uanid.crossconfig.type;
+package com.uanid.crossconfig.common;
 
 public interface Type {
 

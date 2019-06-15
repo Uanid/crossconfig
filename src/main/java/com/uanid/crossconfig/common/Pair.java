@@ -1,4 +1,4 @@
-package com.uanid.crossconfig.util;
+package com.uanid.crossconfig.common;
 
 import java.util.Objects;
 

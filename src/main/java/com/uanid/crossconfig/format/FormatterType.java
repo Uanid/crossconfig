@@ -1,7 +1,6 @@
 package com.uanid.crossconfig.format;
 
-import com.uanid.crossconfig.type.Type;
-import com.uanid.crossconfig.util.CommonUtils;
+import com.uanid.crossconfig.common.Type;
 import com.uanid.crossconfig.util.MatchType;
 import com.uanid.crossconfig.util.StringUtils;
 import com.uanid.crossconfig.util.Validate;
@@ -9,7 +8,6 @@ import com.uanid.crossconfig.util.Validate;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 public class FormatterType implements Type {
 
