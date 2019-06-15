@@ -7,12 +7,12 @@ import com.uanid.crossconfig.format.FormatterType;
 
 public class YamlFormatterProvider implements FormatterProvider {
     private static final FormatterType FORMATTER_TYPE = new FormatterType("DefaultSnakeYAML", "SnakeYaml");
+    
+    private YamlFormatterProvider() {
+    }
 
     public static YamlFormatterProvider getInstance() {
         return SingletonHolder.INSTANCE;
-    }
-
-    private YamlFormatterProvider() {
     }
 
     @Override
@@ -21,7 +21,7 @@ public class YamlFormatterProvider implements FormatterProvider {
     }
 
     @Override
-    public FormatterType getFormatterType() {
+    public FormatterType getFormatterReturnType() {
         return FORMATTER_TYPE;
     }
 
