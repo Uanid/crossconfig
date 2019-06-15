@@ -1,7 +1,10 @@
 package com.uanid.crossconfig;
 
-import java.nio.charset.Charset;
-
+/**
+ * @author uanid
+ */
 public class CrossConfiguration {
+    public static void main(String[] args) {
 
+    }
 }

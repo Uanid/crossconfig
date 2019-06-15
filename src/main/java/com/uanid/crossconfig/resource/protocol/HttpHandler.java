@@ -8,9 +8,10 @@ import com.uanid.crossconfig.resource.ResourceUri;
 public class HttpHandler extends ProtocolHandler {
     private static final ProtocolType PROTOCOL_TYPE = new ProtocolType("HTTP", "1.1");
 
-    public HttpHandler() {
-        super(PROTOCOL_TYPE);
+    public HttpHandler(ProtocolType protocolType, ResourceUri resourceUri) {
+        super(protocolType, resourceUri);
     }
+
 
     @Override
     protected RawData load0(ResourceUri resourceUri) throws Exception {
