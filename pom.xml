@@ -4,9 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.uanid</groupId>
+	<groupId>com.uanid.crossconfig</groupId>
 	<artifactId>cross-config</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<version>0.1.0</version>
+	<modules>
+		<module>json-dataformat</module>
+	</modules>
 	<name>cross-config</name>
 	<url>http://tpsw.or.kr</url>
 
@@ -31,16 +35,7 @@
 			<artifactId>config</artifactId>
 			<version>1.2.1</version>
 		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.9.8</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.dataformat</groupId>
-			<artifactId>jackson-dataformat-yaml</artifactId>
-			<version>2.9.8</version>
-		</dependency>
+
 		<dependency>
 			<groupId>com.fasterxml.jackson.dataformat</groupId>
 			<artifactId>jackson-dataformat-xml</artifactId>
@@ -102,7 +97,6 @@
 				</executions>
 				<configuration>
 					<archive>
-						<manifestFile>src/main/resources/Manifest.txt</manifestFile>
 						<manifest>
 							<addClasspath>true</addClasspath>
 						</manifest>
