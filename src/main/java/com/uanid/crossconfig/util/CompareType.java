@@ -14,6 +14,10 @@ public enum CompareType {
     }
 
     public static CompareType valueOf(int compareResult) {
+        return windowsStyleValueOf(compareResult);
+    }
+
+    public static CompareType windowsStyleValueOf(int compareResult) {
         for (CompareType type : CompareType.values()) {
             if (type.getCompareResult() == compareResult) {
                 return type;
@@ -23,7 +27,7 @@ public enum CompareType {
     }
 
     public static CompareType safeValueOf(int compareResult) {
-        return safeValueOf(compareResult);
+        return unixStyleValueOf(compareResult);
     }
 
     public static CompareType unixStyleValueOf(int compareResult) {

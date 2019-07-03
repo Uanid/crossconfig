@@ -8,6 +8,27 @@ import java.util.Objects;
 public class Validate {
 
     /**
+     * bool == true : OK
+     * bool == false: NO
+     */
+    public static void trueIs(boolean bool) {
+        if (!bool) {
+            throw new IllegalArgumentException(bool + " must be true");
+        }
+    }
+
+
+    /**
+     * bool == false: OK
+     * bool == true : NO
+     */
+    public static void falseIs(boolean bool) {
+        if (bool) {
+            throw new IllegalArgumentException(bool + " must be false");
+        }
+    }
+
+    /**
      * o1 != null : OK
      * o1 == null : NO
      */
@@ -31,9 +52,19 @@ public class Validate {
      * n1 == n2 : OK
      * n1 != n2 : NO
      */
-    public static void referenceEqual(Object o1, Object o2){
+    public static void referenceEqual(Object o1, Object o2) {
         if (o1 != o2) {
-            throw new NotEqualException(o1 + " must be reference-equals(==) " + o2);
+            throw new NotEqualException(o1 + " must be reference(memory)-equals(==) " + o2);
+        }
+    }
+
+    /**
+     * n1 == n2 : OK
+     * n1 != n2 : NO
+     */
+    public static void memoryEqual(Object o1, Object o2) {
+        if (o1 != o2) {
+            throw new NotEqualException(o1 + " must be memory(reference)-equals(==) " + o2);
         }
     }
 
@@ -61,7 +92,7 @@ public class Validate {
      * n1 <  n2 : OK
      * n1 >= n2 : NO
      */
-    public static void lessThan(long n1, long n2){
+    public static void lessThan(long n1, long n2) {
         if (n1 >= n2) {
             throw new IllegalArgumentException(n1 + " must be less than " + n2);
         }
@@ -71,7 +102,7 @@ public class Validate {
      * n1 <= n2 : OK
      * n1 >  n2 : NO
      */
-    public static void belowThan(long n1, long n2){
+    public static void belowThan(long n1, long n2) {
         if (n1 > n2) {
             throw new IllegalArgumentException(n1 + " must be below than" + n2);
         }
@@ -79,6 +110,12 @@ public class Validate {
 
     public static void positiveNumber(long n1) {
         aboveThan(n1, 0);
+    }
+
+    public static void betweenAnB(long a, long n1, long b) {
+        if (!(a <= n1 && n1 <= b)) {
+            throw new IllegalArgumentException(n1 + " must be between number " + a + " and " + b);
+        }
     }
 
 }

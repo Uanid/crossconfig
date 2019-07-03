@@ -1,7 +1,11 @@
 package com.uanid.crossconfig.rawdata;
 
-import com.sun.istack.internal.NotNull;
+import com.uanid.crossconfig.common.NotNull;
 
+/**
+ * @author uanid
+ *
+ */
 public interface RawData<T> {
 
     @NotNull
@@ -10,4 +14,6 @@ public interface RawData<T> {
     @NotNull
     RawDataType getRawDataType();
 
+    @NotNull
+    byte[] toByteArray();
 }
