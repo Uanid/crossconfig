@@ -1,6 +1,7 @@
 package com.uanid.crossconfig.format;
 
 import com.uanid.crossconfig.exception.DuplicatedKeyException;
+import com.uanid.crossconfig.util.ClassProvider;
 import com.uanid.crossconfig.util.MatchType;
 
 import java.util.ArrayList;
@@ -34,10 +35,9 @@ public final class FormatterManager {
     }
 
     private void initRegisterFactory() {
-        //TODO: sub module 동적으로 가져오도록 해야 함 (패키지 이름으로 참조하던가 하도록)
-        //this.registerFactory(YamlFormatterProvider.getInstance());
-        //this.registerFactory(JsonFormatterProvider.getInstance());
-        //this.registerFactory(IniFormatterProvider.getInstance());
+        ClassProvider.loadClassCode("com.uanid.crossconfig.format.impl.IniFormatterProvider");
+        ClassProvider.loadClassCode("com.uanid.crossconfig.format.impl.YamlFormatterProvider");
+        ClassProvider.loadClassCode("com.uanid.crossconfig.format.impl.JsonFormatterProvider");
     }
 
     public void registerFactory(FormatterProvider provider) {

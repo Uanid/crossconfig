@@ -4,6 +4,7 @@ import com.uanid.crossconfig.node.ConfigNode;
 import com.uanid.crossconfig.node.NodeType;
 import com.uanid.crossconfig.node.TreeConfigNode;
 import com.uanid.crossconfig.common.Pair;
+import com.uanid.crossconfig.util.Validate;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,8 +13,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
-import static org.junit.Assert.*;
 
 /**
  * @author uanid
@@ -39,12 +38,12 @@ public class JavaPrimitiveConverterTest {
     public void convert() {
         ConfigNode configNode = converter.convert(root);
 
-        assertEquals(configNode.getNodeType(), NodeType.TREE);
+        Validate.equal(configNode.getNodeType(), NodeType.TREE);
 
         TreeConfigNode root = (TreeConfigNode) configNode;
-        assertEquals(root.get("list").getNodeType(), NodeType.LIST);
-        assertEquals(root.get("valueA").getNodeType(), NodeType.PRIMITIVE);
-        assertEquals(root.get("valueB").getNodeType(), NodeType.PRIMITIVE);
-        assertEquals(root.get("subtree").getNodeType(), NodeType.TREE);
+        Validate.equal(root.get("list").getNodeType(), NodeType.LIST);
+        Validate.equal(root.get("valueA").getNodeType(), NodeType.PRIMITIVE);
+        Validate.equal(root.get("valueB").getNodeType(), NodeType.PRIMITIVE);
+        Validate.equal(root.get("subtree").getNodeType(), NodeType.TREE);
     }
 }
