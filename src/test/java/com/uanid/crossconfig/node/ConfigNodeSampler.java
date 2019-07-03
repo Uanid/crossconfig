@@ -1,7 +1,7 @@
 package com.uanid.crossconfig.node;
 
 import com.github.javafaker.Faker;
-import com.sun.istack.internal.Nullable;
+import com.uanid.crossconfig.common.Nullable;
 
 public class ConfigNodeSampler {
 

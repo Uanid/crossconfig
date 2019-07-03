@@ -3,25 +3,39 @@ package com.uanid.crossconfig.common;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class BufferedByteOutputStream extends OutputStream {
+/**
+ * @author uanid
+ * @since 2019-07-03
+ */
+public class WrappedByteOutputStream extends OutputStream {
 
     private FlexibleByteArray byteArray;
 
-    public BufferedByteOutputStream() {
+    public WrappedByteOutputStream() {
         this.byteArray = new FlexibleByteArray();
     }
 
-    public BufferedByteOutputStream(int byteArraySize, int byteArrayGrowSize) {
+    public WrappedByteOutputStream(int byteArraySize, int byteArrayGrowSize) {
         this.byteArray = new FlexibleByteArray(byteArraySize, byteArrayGrowSize);
     }
 
-    public BufferedByteOutputStream(FlexibleByteArray byteArray){
+    public WrappedByteOutputStream(FlexibleByteArray byteArray){
         this.byteArray = byteArray;
     }
 
     @Override
     public void write(int b) throws IOException {
-        this.byteArray.append(new byte[]{(byte) b});
+        byteArray.append((byte) b);
+    }
+
+    @Override
+    public void write(byte[] b) throws IOException {
+        byteArray.append(b);
+    }
+
+    @Override
+    public void write(byte[] b, int off, int len) throws IOException {
+        byteArray.append(b, off, len);
     }
 
     @Override

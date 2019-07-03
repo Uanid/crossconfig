@@ -24,4 +24,9 @@ public class ByteRawData implements RawData<ByteBuffer> {
     public RawDataType getRawDataType() {
         return RAW_DATA_TYPE;
     }
+
+    @Override
+    public byte[] toByteArray() {
+        return byteBuffer.array();
+    }
 }
