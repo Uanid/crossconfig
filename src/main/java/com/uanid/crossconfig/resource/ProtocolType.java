@@ -7,6 +7,8 @@ public class ProtocolType implements Type {
 
     private String name;
     private String version;
+    private boolean loadable;
+    private boolean savable;
 
     public ProtocolType(String name) {
         this(name, "NoVersion");
@@ -28,7 +30,6 @@ public class ProtocolType implements Type {
         return version;
     }
 
-
     public String getInfo() {
         return String.format("%s/%s", name, version);
     }
@@ -44,5 +45,13 @@ public class ProtocolType implements Type {
         if (o instanceof ProtocolType) return false;
         ProtocolType that = (ProtocolType) o;
         return name.equals(that.name) && version.equals(that.version);
+    }
+
+    public boolean isLoadable() {
+        return loadable;
+    }
+
+    public boolean isSavable() {
+        return savable;
     }
 }
