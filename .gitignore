@@ -1,8 +1,6 @@
 #ignore IDE files
 /.idea
 *.iml
-/target
-/json-dataformat
-/ini-dataformat
-/yaml-dataformat
 
+#ignore post-compile files
+/target

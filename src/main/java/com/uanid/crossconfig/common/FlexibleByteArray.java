@@ -10,28 +10,28 @@ import java.util.Arrays;
  */
 public class FlexibleByteArray {
     private static final int DEFAULT_GROW_SIZE = 1024;
-    private static final int DEFAULT_LIMIT_SIZE = 1024;
+    private static final int DEFAULT_ARRAY_SIZE = 1024;
 
     public static int getDefaultGrowSize() {
         return DEFAULT_GROW_SIZE;
     }
 
-    public static int getDefaultLimitSize() {
-        return DEFAULT_LIMIT_SIZE;
+    public static int getDefaultArraySize() {
+        return DEFAULT_ARRAY_SIZE;
     }
 
-    private byte[] buffer;
-    private int limitSize;
+    private byte[] array;
+    private int arraySize;
     private int growSize;
     private int appendOffset;
 
     public FlexibleByteArray() {
-        this(DEFAULT_LIMIT_SIZE, DEFAULT_GROW_SIZE);
+        this(DEFAULT_ARRAY_SIZE, DEFAULT_GROW_SIZE);
     }
 
-    public FlexibleByteArray(int limitSize, int growSize) {
-        this.buffer = new byte[limitSize];
-        this.limitSize = limitSize;
+    public FlexibleByteArray(int arraySize, int growSize) {
+        this.array = new byte[arraySize];
+        this.arraySize = arraySize;
         this.growSize = growSize;
         this.appendOffset = 0;
     }
@@ -43,46 +43,52 @@ public class FlexibleByteArray {
     public void grow(int passiveGrowSize) {
         Validate.positiveNumber(passiveGrowSize);
 
-        int newLimitSize = limitSize + passiveGrowSize;
-        buffer = Arrays.copyOf(buffer, newLimitSize);
-        limitSize = newLimitSize;
+        int newBufferSize = arraySize + passiveGrowSize;
+        array = Arrays.copyOf(array, newBufferSize);
+        arraySize = newBufferSize;
     }
 
-    public void append(byte[] sourceBuffer) {
-        append(sourceBuffer, 0, sourceBuffer.length);
+    public void append(byte b) {
+        if (appendOffset >= arraySize) {
+            grow();
+        }
+        array[appendOffset] = b;
+        appendOffset++;
+    }
+
+    public void append(byte[] sourceArray) {
+        append(sourceArray, 0, sourceArray.length);
     }
 
     public void append(byte[] sourceBuffer, int bufferOffset, int copyLength) {
-        int targetBufferSize = appendOffset + copyLength;
-        int targetLimitSize = limitSize;
+        int atLeastArraySize = appendOffset + copyLength;
         int targetGrowSize = 0;
-        while (targetLimitSize < targetBufferSize) {
+        while ((arraySize + targetGrowSize) < atLeastArraySize) {
             targetGrowSize += growSize;
-            targetLimitSize = limitSize + targetGrowSize;
         }
 
         grow(targetGrowSize);
         for (int i = 0; i < copyLength; i++) {
-            buffer[appendOffset] = sourceBuffer[bufferOffset + i];
+            array[appendOffset] = sourceBuffer[bufferOffset + i];
             appendOffset++;
         }
     }
 
-    public void shrinkTo(int newLimitSize) {
-        Validate.lessThan(newLimitSize, limitSize);
-        setLimitSize(newLimitSize);
+    public void shrinkTo(int newArraySize) {
+        Validate.betweenAnB(0, newArraySize, arraySize);
+        setArraySize(newArraySize);
     }
 
-    public void growTo(int newLimitSize) {
-        Validate.greaterThan(limitSize, newLimitSize);
-        setLimitSize(newLimitSize);
+    public void growTo(int newArraySize) {
+        Validate.greaterThan(arraySize, newArraySize);
+        setArraySize(newArraySize);
     }
 
-    public void setLimitSize(int newLimitSize) {
-        Validate.positiveNumber(newLimitSize);
+    public void setArraySize(int newArraySize) {
+        Validate.positiveNumber(newArraySize);
 
-        buffer = Arrays.copyOf(buffer, newLimitSize);
-        limitSize = newLimitSize;
+        array = Arrays.copyOf(array, newArraySize);
+        arraySize = newArraySize;
     }
 
     public void setGrowSize(int growSize) {
@@ -94,11 +100,11 @@ public class FlexibleByteArray {
     }
 
     public byte[] toByteArray() {
-        return Arrays.copyOf(buffer, appendOffset);
+        return Arrays.copyOf(array, appendOffset);
     }
 
-    public int getLimitSize() {
-        return limitSize;
+    public int getArraySize() {
+        return arraySize;
     }
 
     public int getGrowSize() {
