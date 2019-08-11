@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<artifactId>config-parent</artifactId>
+		<groupId>com.uanid.crossconfig</groupId>
+		<version>0.1.0</version>
+	</parent>
+
+	<packaging>pom</packaging>
+	<artifactId>config-all</artifactId>
+	<name>config-all</name>
+	<url>http://uanid.com</url>
+	<modelVersion>4.0.0</modelVersion>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.uanid.crossconfig</groupId>
+			<artifactId>config-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.uanid.crossconfig</groupId>
+			<artifactId>http-protocol</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.uanid.crossconfig</groupId>
+			<artifactId>ini-dataformat</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.uanid.crossconfig</groupId>
+			<artifactId>json-dataformat</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.uanid.crossconfig</groupId>
+			<artifactId>yaml-dataformat</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
+
+</project>

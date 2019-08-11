@@ -5,18 +5,20 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.uanid.crossconfig</groupId>
-	<artifactId>cross-config-base</artifactId>
+	<artifactId>config-parent</artifactId>
 	<packaging>pom</packaging>
 	<version>0.1.0</version>
 	<modules>
+		<module>config-api</module>
 		<module>config-core</module>
 		<module>http-protocol</module>
 		<module>ini-dataformat</module>
 		<module>json-dataformat</module>
 		<module>yaml-dataformat</module>
+		<module>config-all</module>
 	</modules>
 
-	<name>cross-config-base</name>
+	<name>config-parent</name>
 	<url>http://uanid.com</url>
 
 	<properties>
@@ -59,6 +61,12 @@
 				<scope>test</scope>
 			</dependency>
 
+			<dependency>
+				<groupId>com.uanid.crossconfig</groupId>
+				<artifactId>config-api</artifactId>
+				<version>${project.version}</version>
+				<scope>provided</scope>
+			</dependency>
 			<dependency>
 				<groupId>com.uanid.crossconfig</groupId>
 				<artifactId>config-core</artifactId>
