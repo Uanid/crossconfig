@@ -1,6 +1,10 @@
 package com.uanid.crossconfig.exception;
 
-public class ConfigException extends RuntimeException {
+/**
+ * @author uanid
+ * @since 2019-08-12
+ */
+public class ConfigException extends Exception {
     public ConfigException() {
     }
 

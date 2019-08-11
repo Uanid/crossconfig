@@ -4,3 +4,5 @@
 
 #ignore post-compile files
 /target
+
+*/target/

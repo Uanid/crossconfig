@@ -1,9 +1,9 @@
 package com.uanid.crossconfig.format.convert;
 
-import com.uanid.crossconfig.exception.ConfigException;
+import com.uanid.crossconfig.common.Pair;
+import com.uanid.crossconfig.exception.RuntimeConfigException;
 import com.uanid.crossconfig.node.*;
 import com.uanid.crossconfig.util.CommonUtils;
-import com.uanid.crossconfig.common.Pair;
 
 import java.util.LinkedHashMap;
 import java.util.stream.Collectors;
@@ -33,7 +33,7 @@ public class CrossConfigConverter implements Converter<ConfigNode, Object> {
             return convertTree((TreeConfigNode) configNode);
 
         } else {
-            throw new ConfigException("Unknown NodeType");
+            throw new RuntimeConfigException("Unknown NodeType");
 
         }
     }

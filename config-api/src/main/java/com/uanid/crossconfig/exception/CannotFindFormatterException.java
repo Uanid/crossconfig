@@ -1,8 +1,8 @@
-package com.uanid.crossconfig.format;
+package com.uanid.crossconfig.exception;
 
-import com.uanid.crossconfig.exception.ConfigException;
+import com.uanid.crossconfig.exception.RuntimeConfigException;
 
-public class CannotFindFormatterException extends ConfigException {
+public class CannotFindFormatterException extends RuntimeConfigException {
     public CannotFindFormatterException() {
     }
 

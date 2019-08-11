@@ -1,5 +1,6 @@
 package com.uanid.crossconfig.resource;
 
+import com.uanid.crossconfig.exception.RuntimeConfigException;
 import com.uanid.crossconfig.rawdata.RawData;
 import com.uanid.crossconfig.util.Validate;
 
@@ -12,22 +13,22 @@ public abstract class ProtocolHandler {
     }
 
     //method responsibility: flow control method
-    public RawData load(ResourceUri resourceUri) throws LoadFailException {
+    public RawData load(ResourceUri resourceUri) throws RuntimeConfigException {
         try {
             Validate.trueIs(protocolType.isLoadable());
             return loadProcess(resourceUri);
         } catch (Exception e) {
-            throw new LoadFailException(e);
+            throw new RuntimeConfigException(e);
         }
     }
 
     //method responsibility: flow control method
-    public void save(ResourceUri resourceUri, RawData rawData) throws SaveFailException {
+    public void save(ResourceUri resourceUri, RawData rawData) throws RuntimeConfigException {
         try {
             Validate.trueIs(protocolType.isSavable());
             saveProcess(resourceUri, rawData);
         } catch (Exception e) {
-            throw new SaveFailException(e);
+            throw new RuntimeConfigException(e);
         }
     }
 

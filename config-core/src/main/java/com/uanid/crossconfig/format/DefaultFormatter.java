@@ -1,5 +1,7 @@
 package com.uanid.crossconfig.format;
 
+import com.uanid.crossconfig.exception.ConfigException;
+import com.uanid.crossconfig.exception.RuntimeConfigException;
 import com.uanid.crossconfig.format.datahandler.DataFormatType;
 import com.uanid.crossconfig.format.datahandler.FormatHandler;
 import com.uanid.crossconfig.node.ConfigNode;
@@ -20,12 +22,12 @@ public class DefaultFormatter implements Formatter {
     }
 
     @Override
-    public ConfigNode parse(RawData rawData) throws ParseFailException {
+    public ConfigNode parse(RawData rawData) throws RuntimeConfigException {
         return formatHandler.parse(rawData);
     }
 
     @Override
-    public RawData dump(ConfigNode configNode) throws DumpFailException {
+    public RawData dump(ConfigNode configNode) throws RuntimeConfigException {
         return formatHandler.dump(configNode);
     }
 

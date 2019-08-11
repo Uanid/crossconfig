@@ -1,6 +1,10 @@
 package com.uanid.crossconfig.exception;
 
-public class DuplicatedKeyException extends ConfigException {
+/**
+ * @author uanid
+ * @since 2019-07-06
+ */
+public class DuplicatedKeyException extends RuntimeConfigException {
     public DuplicatedKeyException() {
     }
 
