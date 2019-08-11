@@ -1,7 +1,9 @@
 package com.uanid.crossconfig.rawdata;
 
 import com.uanid.crossconfig.common.Type;
+import lombok.Getter;
 
+@Getter
 public class RawDataType implements Type {
 
     private String name;
@@ -10,15 +12,6 @@ public class RawDataType implements Type {
     public RawDataType(String name, Class dataClass) {
         this.name = name;
         this.dataClass = dataClass;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    public Class getDataClass() {
-        return dataClass;
     }
 
     @Override

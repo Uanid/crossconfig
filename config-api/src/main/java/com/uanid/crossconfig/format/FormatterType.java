@@ -1,19 +1,22 @@
 package com.uanid.crossconfig.format;
 
+import com.uanid.crossconfig.common.Immutable;
 import com.uanid.crossconfig.common.Type;
 import com.uanid.crossconfig.util.MatchType;
 import com.uanid.crossconfig.util.StringUtils;
 import com.uanid.crossconfig.util.Validate;
+import lombok.Getter;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+@Getter
 public class FormatterType implements Type {
 
     private String name;
 
-    //Immutable list
+    @Immutable
     private List<String> alias;
 
     public FormatterType(String name) {
@@ -29,15 +32,6 @@ public class FormatterType implements Type {
         Validate.notNull(alias);
         this.name = name;
         this.alias = Collections.unmodifiableList(alias);
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    public List<String> getAlias() {
-        return alias;
     }
 
     public String getInfo() {
