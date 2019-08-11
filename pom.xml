@@ -2,26 +2,125 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<parent>
-		<groupId>com.uanid.crossconfig</groupId>
-		<artifactId>cross-config</artifactId>
-		<version>0.1.0</version>
-	</parent>
-
-	<packaging>jar</packaging>
-	<artifactId>config-core</artifactId>
-	<name>config-core</name>
-	<url>http://uanid.com</url>
 	<modelVersion>4.0.0</modelVersion>
 
-	<dependencies>
-		<dependency>
-			<groupId>com.github.javafaker</groupId>
-			<artifactId>javafaker</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-		</dependency>
-	</dependencies>
+	<groupId>com.uanid.crossconfig</groupId>
+	<artifactId>cross-config-base</artifactId>
+	<packaging>pom</packaging>
+	<version>0.1.0</version>
+	<modules>
+		<module>config-core</module>
+		<module>http-protocol</module>
+		<module>ini-dataformat</module>
+		<module>json-dataformat</module>
+		<module>yaml-dataformat</module>
+	</modules>
+
+	<name>cross-config-base</name>
+	<url>http://uanid.com</url>
+
+	<properties>
+		<!-- 컴파일 자바 버전 -->
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+
+		<!-- 컴파일 시 사용할 resource 파일 인코딩(OS에 종속되지 않게) -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
+	</properties>
+
+	<!--	<distributionManagement>-->
+	<!--		<repository>-->
+	<!--			<id>github</id>-->
+	<!--			<name>GitHub Uanid Apache Maven Packages</name>-->
+	<!--			<url>https://maven.pkg.github.com/uanid</url>-->
+	<!--		</repository>-->
+	<!--	</distributionManagement>-->
+
+	<!--	<scm>-->
+	<!--		<connection>scm:git:https://github.com/Uanid/CrossConfig.git</connection>-->
+	<!--		<developerConnection>scm:git:https://github.com/Uanid/CrossConfig.git</developerConnection>-->
+	<!--		<url>https://github.com/Uanid/CrossConfig</url>-->
+	<!--	</scm>-->
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.github.javafaker</groupId>
+				<artifactId>javafaker</artifactId>
+				<version>0.18</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.12</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>com.uanid.crossconfig</groupId>
+				<artifactId>config-core</artifactId>
+				<version>${project.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.yaml</groupId>
+				<artifactId>snakeyaml</artifactId>
+				<version>1.24</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>2.9.9</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.ini4j</groupId>
+				<artifactId>ini4j</artifactId>
+				<version>0.5.1</version>
+				<scope>provided</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.1.2</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<classifier>client</classifier>
+						</configuration>
+					</execution>
+				</executions>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+
+	</build>
 </project>
