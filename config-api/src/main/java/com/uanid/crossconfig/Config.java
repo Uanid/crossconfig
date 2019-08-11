@@ -1,4 +1,4 @@
-package com.uanid.crossconfig.config;
+package com.uanid.crossconfig;
 
 import com.uanid.crossconfig.resource.ResourceAccessor;
 

@@ -9,6 +9,7 @@ import java.io.InputStream;
  *
  * TODO: 일단은 사용 금지
  * TODO: marked 기능을 완벽하게 지원하던가, 클래스를 삭제하던가
+ * TODO: mark 관련해서 제대로 동작 안 할듯..
  */
 public class WrappedByteInputStream extends InputStream {
 

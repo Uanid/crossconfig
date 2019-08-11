@@ -1,11 +1,7 @@
 package com.uanid.crossconfig.format.impl;
 
 import com.uanid.crossconfig.common.WrappedByteOutputStream;
-import com.uanid.crossconfig.format.convert.Converter;
-import com.uanid.crossconfig.format.datahandler.DataFormatType;
 import com.uanid.crossconfig.format.datahandler.FormatHandler;
-import com.uanid.crossconfig.node.ConfigNode;
-import com.uanid.crossconfig.rawdata.RawData;
 import com.uanid.crossconfig.rawdata.TextRawData;
 import org.ini4j.Ini;
 

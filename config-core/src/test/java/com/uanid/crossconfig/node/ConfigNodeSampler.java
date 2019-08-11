@@ -1,7 +1,6 @@
 package com.uanid.crossconfig.node;
 
 import com.github.javafaker.Faker;
-import com.uanid.crossconfig.common.Nullable;
 
 public class ConfigNodeSampler {
 
@@ -22,7 +21,6 @@ public class ConfigNodeSampler {
         return (TreeConfigNode) fillSampleNode(new TreeConfigNode());
     }
 
-    @Nullable
     public ConfigNode getSampleNodeWithNullRate() {
         if (faker.number().randomDouble(5, 0, 1) < nullNodeRate) {
             return null;

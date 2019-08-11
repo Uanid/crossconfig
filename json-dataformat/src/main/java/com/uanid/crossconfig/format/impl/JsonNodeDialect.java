@@ -2,8 +2,6 @@ package com.uanid.crossconfig.format.impl;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.*;
-import com.uanid.crossconfig.format.convert.Dialect;
-import com.uanid.crossconfig.node.NodeType;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

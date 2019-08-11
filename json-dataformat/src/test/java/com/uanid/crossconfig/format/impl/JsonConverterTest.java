@@ -2,8 +2,6 @@ package com.uanid.crossconfig.format.impl;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.uanid.crossconfig.node.ConfigNode;
-import com.uanid.crossconfig.node.NodeType;
 import org.junit.Before;
 import org.junit.Test;
 

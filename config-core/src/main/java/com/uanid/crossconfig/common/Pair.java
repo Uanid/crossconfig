@@ -12,7 +12,6 @@ public class Pair<K, V> {
         this.value = value;
     }
 
-
     public K getKey() {
         return key;
     }
@@ -25,7 +24,6 @@ public class Pair<K, V> {
     public String toString() {
         return key + "=" + value;
     }
-
 
     @Override
     public int hashCode() {

@@ -1,9 +1,6 @@
 package com.uanid.crossconfig.resource.impl;
 
 import com.uanid.crossconfig.rawdata.ByteRawData;
-import com.uanid.crossconfig.rawdata.RawData;
-import com.uanid.crossconfig.resource.ProtocolHandler;
-import com.uanid.crossconfig.resource.ProtocolType;
 import com.uanid.crossconfig.resource.ResourceUri;
 import com.uanid.crossconfig.util.CommonUtils;
 import sun.net.www.protocol.http.HttpURLConnection;
