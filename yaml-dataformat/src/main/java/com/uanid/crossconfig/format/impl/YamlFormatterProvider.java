@@ -1,6 +1,9 @@
 package com.uanid.crossconfig.format.impl;
 
 import com.uanid.crossconfig.format.DefaultFormatter;
+import com.uanid.crossconfig.format.Formatter;
+import com.uanid.crossconfig.format.FormatterProvider;
+import com.uanid.crossconfig.format.FormatterType;
 
 public class YamlFormatterProvider implements FormatterProvider {
     private static final FormatterType FORMATTER_TYPE = new FormatterType("DefaultSnakeYAML", "SnakeYaml");

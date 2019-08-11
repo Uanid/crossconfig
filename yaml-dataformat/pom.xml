@@ -24,5 +24,9 @@
 			<artifactId>config-core</artifactId>
 			<type>jar</type>
 		</dependency>
+		<dependency>
+			<groupId>com.uanid.crossconfig</groupId>
+			<artifactId>config-api</artifactId>
+		</dependency>
 	</dependencies>
 </project>

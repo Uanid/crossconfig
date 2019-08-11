@@ -2,6 +2,7 @@ package com.uanid.crossconfig.format.convert;
 
 
 import com.uanid.crossconfig.exception.ConfigException;
+import com.uanid.crossconfig.exception.RuntimeConfigException;
 import com.uanid.crossconfig.node.*;
 
 import java.util.Map;
@@ -54,7 +55,7 @@ public class NodeConverter<ParentNode,
 
         } else {
             //애초에 노드 타입이 3개라서 발생 불가능한 경우인데... (switch-case를 사용해도 똑같은 문제가 발생)
-            throw new ConfigException("Unknown NodeType");
+            throw new RuntimeConfigException("Unknown NodeType");
         }
     }
 

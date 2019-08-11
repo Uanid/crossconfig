@@ -1,6 +1,7 @@
 package com.uanid.crossconfig.format;
 
 import com.uanid.crossconfig.exception.DuplicatedKeyException;
+import com.uanid.crossconfig.exception.RuntimeConfigException;
 import com.uanid.crossconfig.util.ClassProvider;
 import com.uanid.crossconfig.util.MatchType;
 
@@ -115,7 +116,7 @@ public final class FormatterManager {
     public FormatterProvider getFormatterProvider(String formatterName, boolean implicitlyMatch) {
         FormatterProvider provider = this.findProvider(formatterName, implicitlyMatch);
         if (provider == null) {
-            throw new CannotFindFormatterException("targetFormatterName: " + formatterName);
+            throw new RuntimeConfigException("targetFormatterName: " + formatterName);
         } else {
             return provider;
         }

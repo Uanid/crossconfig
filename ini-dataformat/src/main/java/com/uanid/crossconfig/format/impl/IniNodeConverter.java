@@ -1,5 +1,7 @@
 package com.uanid.crossconfig.format.impl;
 
+import com.uanid.crossconfig.format.convert.Converter;
+import com.uanid.crossconfig.node.ConfigNode;
 import com.uanid.crossconfig.node.PrimitiveConfigNode;
 import com.uanid.crossconfig.node.TreeConfigNode;
 import org.ini4j.Ini;

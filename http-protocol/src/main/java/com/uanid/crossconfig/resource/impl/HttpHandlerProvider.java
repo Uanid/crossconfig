@@ -1,5 +1,9 @@
 package com.uanid.crossconfig.resource.impl;
 
+import com.uanid.crossconfig.resource.ProtocolHandler;
+import com.uanid.crossconfig.resource.ProtocolHandlerProvider;
+import com.uanid.crossconfig.resource.ProtocolType;
+
 public class HttpHandlerProvider implements ProtocolHandlerProvider {
     private static final ProtocolType PROTOCOL_TYPE = new ProtocolType("HTTP", "1.1");
 

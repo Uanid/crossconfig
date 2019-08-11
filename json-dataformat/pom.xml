@@ -29,6 +29,10 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.uanid.crossconfig</groupId>
+			<artifactId>config-api</artifactId>
+		</dependency>
 	</dependencies>
 
 </project>
