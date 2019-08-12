@@ -2,20 +2,18 @@ package com.uanid.crossconfig.format.datahandler;
 
 import com.uanid.crossconfig.common.Type;
 import com.uanid.crossconfig.util.Validate;
-import lombok.Getter;
 
 /**
  * @author uanid
  * @since 2019-05-23
  */
-@Getter
 public class DataFormatType implements Type {
 
     private String name;
     private String version;
 
     public DataFormatType(String name) {
-        this(name, "NoVersion");
+        this(name, "NotHasVersion");
     }
 
     public DataFormatType(String name, String version) {
@@ -23,6 +21,15 @@ public class DataFormatType implements Type {
         Validate.notNull(version);
         this.name = name;
         this.version = version;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    public String getVersion() {
+        return version;
     }
 
     public String getInfo() {

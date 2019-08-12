@@ -105,13 +105,24 @@ public class Validate {
         }
     }
 
+    /**
+     * n1 >= 0 : OK
+     * n1 <  0 : NO
+     */
     public static void positiveNumber(long n1) {
         aboveThan(n1, 0);
     }
 
-    public static void betweenAnB(long a, long n1, long b) {
-        if (!(a <= n1 && n1 <= b)) {
-            throw new IllegalArgumentException(n1 + " must be between number " + a + " and " + b);
+    /**
+     * gteA <= n <= lteB : OK
+     * else              : NO
+     * @param gteA Greater than and equal A
+     * @param n
+     * @param lteB less than and equal B
+     */
+    public static void betweenAnB(long gteA, long n, long lteB) {
+        if (!(gteA <= n && n <= lteB)) {
+            throw new IllegalArgumentException(n + " must be between number " + gteA + " and " + lteB);
         }
     }
 

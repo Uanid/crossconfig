@@ -1,6 +1,5 @@
 package com.uanid.crossconfig.format;
 
-import com.uanid.crossconfig.exception.ConfigException;
 import com.uanid.crossconfig.exception.RuntimeConfigException;
 import com.uanid.crossconfig.format.datahandler.DataFormatType;
 import com.uanid.crossconfig.node.ConfigNode;

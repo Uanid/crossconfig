@@ -2,34 +2,34 @@ package com.uanid.crossconfig.format.impl;
 
 import com.uanid.crossconfig.format.DefaultFormatter;
 import com.uanid.crossconfig.format.Formatter;
-import com.uanid.crossconfig.format.FormatterProvider;
+import com.uanid.crossconfig.format.FormatterProviderService;
 import com.uanid.crossconfig.format.FormatterType;
 
 /**
  * @author uanid
  * @since 2019-06-15
  */
-public class JsonFormatterProvider implements FormatterProvider {
+public class JsonFormatterProviderService implements FormatterProviderService {
     private static final FormatterType FORMATTER_TYPE = new FormatterType("DefaultJacksonJson", "JacksonJson");
 
-    public static JsonFormatterProvider getInstance() {
+    public static JsonFormatterProviderService getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
-    private JsonFormatterProvider() {
+    private JsonFormatterProviderService() {
     }
 
     @Override
-    public Formatter getFormatter() {
+    public Formatter getFormatterFactory() {
         return new DefaultFormatter(FORMATTER_TYPE, new JsonFormatHandler());
     }
 
     @Override
-    public FormatterType getFormatterReturnType() {
+    public FormatterType getFormatterType() {
         return FORMATTER_TYPE;
     }
 
     private static class SingletonHolder {
-        private static final JsonFormatterProvider INSTANCE = new JsonFormatterProvider();
+        private static final JsonFormatterProviderService INSTANCE = new JsonFormatterProviderService();
     }
 }

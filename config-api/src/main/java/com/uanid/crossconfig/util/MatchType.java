@@ -5,8 +5,10 @@ import java.util.List;
 public enum MatchType {
     PRIMARY, ALIAS, NONE;
 
-    //메서드명... 정말 뭘로 지어야 할지 모르겠음
-    //t1, t2 중에 더 강력하게 매칭 되는것을 반환하는 기능
+    /**
+     *  t1, t2 중에 더 강력하게 매칭 되는것을 반환하는 기능
+     *  Math.max와 동일
+     */
     public static MatchType getUpperType(MatchType t1, MatchType t2) {
         if (t1 == PRIMARY || t2 == PRIMARY) {
             return PRIMARY;
@@ -17,23 +19,23 @@ public enum MatchType {
         }
     }
 
-    private static <T> boolean matchListOfItem(T source, List<T> aliasTarget) {
-        int size = aliasTarget.size();
-        for (int i = 0; i < size; i++) {
-            if (aliasTarget.get(i).equals(source)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static <T> MatchType matchNames(T source, T primaryTarget, List<T> aliasTarget) {
+    public static <T> MatchType compareMatchType(T source, T primaryTarget, List<T> aliasTarget) {
         if (primaryTarget.equals(source)) {
             return MatchType.PRIMARY;
-        } else if (matchListOfItem(source, aliasTarget)) {
+        } else if (compareMatchListOfItem(source, aliasTarget)) {
             return MatchType.ALIAS;
         } else {
             return MatchType.NONE;
         }
+    }
+
+    private static <T> boolean compareMatchListOfItem(T source, List<T> targets) {
+        int size = targets.size();
+        for (int i = 0; i < size; i++) {
+            if (targets.get(i).equals(source)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

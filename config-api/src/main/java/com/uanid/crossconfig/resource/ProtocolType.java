@@ -2,9 +2,7 @@ package com.uanid.crossconfig.resource;
 
 import com.uanid.crossconfig.common.Type;
 import com.uanid.crossconfig.util.Validate;
-import lombok.Getter;
 
-@Getter
 public class ProtocolType implements Type {
 
     private String name;
@@ -21,6 +19,23 @@ public class ProtocolType implements Type {
         Validate.notNull(version);
         this.name = name;
         this.version = version;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public boolean isLoadable() {
+        return loadable;
+    }
+
+    public boolean isSavable() {
+        return savable;
     }
 
     public String getInfo() {
@@ -40,11 +55,4 @@ public class ProtocolType implements Type {
         return name.equals(that.name) && version.equals(that.version);
     }
 
-    public boolean isLoadable() {
-        return loadable;
-    }
-
-    public boolean isSavable() {
-        return savable;
-    }
 }

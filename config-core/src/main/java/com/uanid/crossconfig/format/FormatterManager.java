@@ -2,7 +2,6 @@ package com.uanid.crossconfig.format;
 
 import com.uanid.crossconfig.exception.DuplicatedKeyException;
 import com.uanid.crossconfig.exception.RuntimeConfigException;
-import com.uanid.crossconfig.util.ClassProvider;
 import com.uanid.crossconfig.util.MatchType;
 
 import java.util.ArrayList;
@@ -26,8 +25,8 @@ public final class FormatterManager {
     }
 
 
-    private List<FormatterProvider> providerContainer;
-    private Map<String, FormatterProvider> cachedProviderContainer;
+    private List<FormatterProviderService> providerContainer;
+    private Map<String, FormatterProviderService> cachedProviderContainer;
 
     private FormatterManager() {
         this.providerContainer = new ArrayList<>();
@@ -36,13 +35,11 @@ public final class FormatterManager {
     }
 
     private void initRegisterFactory() {
-        ClassProvider.loadClassCode("com.uanid.crossconfig.format.impl.IniFormatterProvider");
-        ClassProvider.loadClassCode("com.uanid.crossconfig.format.impl.YamlFormatterProvider");
-        ClassProvider.loadClassCode("com.uanid.crossconfig.format.impl.JsonFormatterProvider");
+
     }
 
-    public void registerFactory(FormatterProvider provider) {
-        FormatterProvider result = this.findProvider(provider.getFormatterReturnType());
+    public void registerFactory(FormatterProviderService provider) {
+        FormatterProviderService result = this.findProvider(provider.getFormatterType());
         if (result == null) {
             this.cachedProviderContainer.clear();
             this.providerContainer.add(provider);
@@ -51,9 +48,9 @@ public final class FormatterManager {
         }
     }
 
-    private FormatterProvider findProvider(FormatterType formatterType) {
-        for (FormatterProvider provider : providerContainer) {
-            if (provider.getFormatterReturnType().equals(formatterType)) {
+    private FormatterProviderService findProvider(FormatterType formatterType) {
+        for (FormatterProviderService provider : providerContainer) {
+            if (provider.getFormatterType().equals(formatterType)) {
                 return provider;
             }
         }
@@ -68,8 +65,8 @@ public final class FormatterManager {
      * @param isImplicty    이름을 암묵적으로 대소문자등을 무시하며 찾을 것인가, 명시적으로 정해진 것만 찾을 것인가
      * @return
      */
-    private FormatterProvider findProvider(String formatterName, boolean isImplicty) {
-        FormatterProvider ff = getCachedProvider(formatterName);
+    private FormatterProviderService findProvider(String formatterName, boolean isImplicty) {
+        FormatterProviderService ff = getCachedProvider(formatterName);
         if (ff != null) {
             return ff;
         }
@@ -81,40 +78,40 @@ public final class FormatterManager {
         return ff;
     }
 
-    private FormatterProvider getCachedProvider(String formatterName) {
+    private FormatterProviderService getCachedProvider(String formatterName) {
         return cachedProviderContainer.get(formatterName);
     }
 
-    private void cacheFactory(String formatterName, FormatterProvider formatterProvider) {
-        this.cachedProviderContainer.put(formatterName, formatterProvider);
+    private void cacheFactory(String formatterName, FormatterProviderService formatterProviderService) {
+        this.cachedProviderContainer.put(formatterName, formatterProviderService);
     }
 
-    private FormatterProvider lookup(String formatterName, boolean implicitlyMatch) {
-        FormatterProvider formatterProvider = null;
-        for (FormatterProvider provider : providerContainer) {
-            MatchType matchType = provider.getFormatterReturnType().compareMatchType(formatterName, implicitlyMatch);
+    private FormatterProviderService lookup(String formatterName, boolean implicitlyMatch) {
+        FormatterProviderService formatterProviderService = null;
+        for (FormatterProviderService provider : providerContainer) {
+            MatchType matchType = provider.getFormatterType().compareToMatchType(formatterName, implicitlyMatch);
 
             if (matchType == MatchType.PRIMARY) {
-                formatterProvider = provider;
+                formatterProviderService = provider;
                 break;
             } else if (matchType == MatchType.ALIAS) {
-                formatterProvider = provider;
+                formatterProviderService = provider;
             }
         }
 
-        return formatterProvider;
+        return formatterProviderService;
     }
 
-    public FormatterProvider getFormatterProvider() {
+    public FormatterProviderService getFormatterProvider() {
         return this.getFormatterProvider(DEFAULT_FORMATTER_NAME, false);
     }
 
-    public FormatterProvider getFormatterProvider(String formatterName) {
+    public FormatterProviderService getFormatterProvider(String formatterName) {
         return this.getFormatterProvider(formatterName, true);
     }
 
-    public FormatterProvider getFormatterProvider(String formatterName, boolean implicitlyMatch) {
-        FormatterProvider provider = this.findProvider(formatterName, implicitlyMatch);
+    public FormatterProviderService getFormatterProvider(String formatterName, boolean implicitlyMatch) {
+        FormatterProviderService provider = this.findProvider(formatterName, implicitlyMatch);
         if (provider == null) {
             throw new RuntimeConfigException("targetFormatterName: " + formatterName);
         } else {

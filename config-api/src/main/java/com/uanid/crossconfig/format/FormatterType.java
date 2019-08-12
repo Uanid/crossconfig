@@ -5,13 +5,11 @@ import com.uanid.crossconfig.common.Type;
 import com.uanid.crossconfig.util.MatchType;
 import com.uanid.crossconfig.util.StringUtils;
 import com.uanid.crossconfig.util.Validate;
-import lombok.Getter;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-@Getter
 public class FormatterType implements Type {
 
     private String name;
@@ -34,6 +32,15 @@ public class FormatterType implements Type {
         this.alias = Collections.unmodifiableList(alias);
     }
 
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    public List<String> getAlias() {
+        return alias;
+    }
+
     public String getInfo() {
         return name + ", " + alias.toString();
     }
@@ -51,13 +58,18 @@ public class FormatterType implements Type {
         return name.equals(that.name) && alias.equals(that.alias);
     }
 
-    public MatchType compareMatchType(String rawName, boolean implicitlyMatch) {
-        MatchType matchType = MatchType.matchNames(rawName, getName(), getAlias());
+    /**
+     * @param rawName
+     * @param implicitlyMatch 암시적 매치: 대소문자를 가리지 않고 비교시켜봄
+     * @return
+     */
+    public MatchType compareToMatchType(String rawName, boolean implicitlyMatch) {
+        MatchType matchType = MatchType.compareMatchType(rawName, getName(), getAlias());
         if (implicitlyMatch) {
             String lowerName = rawName.toLowerCase();
             String lowerThisName = getName().toLowerCase();
             List<String> lowerThisAlias = StringUtils.convertLowerCaseList(getAlias());
-            MatchType implicitMatchType = MatchType.matchNames(lowerName, lowerThisName, lowerThisAlias);
+            MatchType implicitMatchType = MatchType.compareMatchType(lowerName, lowerThisName, lowerThisAlias);
             matchType = MatchType.getUpperType(matchType, implicitMatchType);
         }
         return matchType;
