@@ -1,5 +1,6 @@
 package com.uanid.crossconfig.resource;
 
+import com.uanid.crossconfig.util.StringUtils;
 import com.uanid.crossconfig.util.Validate;
 
 /**

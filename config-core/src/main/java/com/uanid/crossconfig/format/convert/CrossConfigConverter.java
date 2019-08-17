@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 /**
  * @author uanid
  * @since 2019-06-04
+ *
+ * ConfigNode -> Java Primitive Object
  */
 public class CrossConfigConverter implements Converter<ConfigNode, Object> {
 

@@ -35,7 +35,7 @@ public class JsonFormatterTest {
 
     @Before
     public void before() {
-        formatter = JsonFormatterProviderService.getInstance().getFormatterFactory();
+        formatter = JsonFormatterFactory.getInstance().newInstance();
 
         mapJson = "{\"aa\":{\"11\":\"bb\"},\"cc\":\"dd\"}";
         listJson = "[\"aa\", \"bb\"]";

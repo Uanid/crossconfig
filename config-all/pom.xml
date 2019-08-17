@@ -17,7 +17,13 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.uanid.crossconfig</groupId>
+			<artifactId>config-api</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.uanid.crossconfig</groupId>
 			<artifactId>config-core</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.uanid.crossconfig</groupId>

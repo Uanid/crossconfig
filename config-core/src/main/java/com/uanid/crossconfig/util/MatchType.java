@@ -2,6 +2,10 @@ package com.uanid.crossconfig.util;
 
 import java.util.List;
 
+/**
+ * @author uanid
+ * @since 2019-07-07
+ */
 public enum MatchType {
     PRIMARY(2), ALIAS(1), NONE(0);
 

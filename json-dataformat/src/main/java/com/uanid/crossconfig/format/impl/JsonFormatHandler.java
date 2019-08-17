@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.uanid.crossconfig.format.convert.Converter;
 import com.uanid.crossconfig.format.convert.CrossConfigConverter;
 import com.uanid.crossconfig.format.datahandler.DataFormatType;
-import com.uanid.crossconfig.format.datahandler.FormatHandler;
+import com.uanid.crossconfig.format.FormatHandler;
 import com.uanid.crossconfig.node.ConfigNode;
 import com.uanid.crossconfig.rawdata.RawData;
 import com.uanid.crossconfig.rawdata.TextRawData;
@@ -26,7 +26,7 @@ public class JsonFormatHandler extends FormatHandler<TextRawData> {
     protected JsonFormatHandler() {
         super(DATA_FORMAT_TYPE);
         this.mapper = new ObjectMapper(new JsonFactory());
-        this.toConfigConverter = new JsonNodeConverter();
+        this.toConfigConverter = new JsonDefaultRecursiveConverter();
         this.toJavaPrimitiveConverter = new CrossConfigConverter();
     }
 

@@ -1,7 +1,6 @@
 package com.uanid.crossconfig.format.convert;
 
 
-import com.uanid.crossconfig.exception.ConfigException;
 import com.uanid.crossconfig.exception.RuntimeConfigException;
 import com.uanid.crossconfig.node.*;
 
@@ -15,7 +14,7 @@ import java.util.Map;
  * @author uanid
  * @since 2019-06-05
  */
-public class NodeConverter<ParentNode,
+public class DefaultRecursiveConverter<ParentNode,
         ValueNode extends ParentNode,
         ListNode extends ParentNode,
         TreeNode extends ParentNode>
@@ -26,7 +25,7 @@ public class NodeConverter<ParentNode,
     private ListConverter listConverter;
     private TreeConverter treeConverter;
 
-    public NodeConverter(Dialect<ParentNode, ValueNode, ListNode, TreeNode> dialect) {
+    public DefaultRecursiveConverter(Dialect<ParentNode, ValueNode, ListNode, TreeNode> dialect) {
         this.dialect = dialect;
         this.valueConverter = new ValueConverter();
         this.listConverter = new ListConverter();
@@ -72,7 +71,7 @@ public class NodeConverter<ParentNode,
         public ConfigNode convert(ListNode listNode) {
             ListConfigNode listConfigNode = new ListConfigNode();
             for (ParentNode preConvertedNode : dialect.getList(listNode)) {
-                ConfigNode convertedNode = NodeConverter.this.convert(preConvertedNode);
+                ConfigNode convertedNode = DefaultRecursiveConverter.this.convert(preConvertedNode);
                 listConfigNode.add(convertedNode);
             }
             return listConfigNode;
@@ -90,7 +89,7 @@ public class NodeConverter<ParentNode,
             TreeConfigNode treeConfigNode = new TreeConfigNode();
             for (Map.Entry<Object, ParentNode> entry : dialect.getTree(treeNode).entrySet()) {
                 PrimitiveConfigNode<Object> key = wrapConfigNode(entry.getKey());
-                ConfigNode value = NodeConverter.this.convert(entry.getValue());
+                ConfigNode value = DefaultRecursiveConverter.this.convert(entry.getValue());
                 treeConfigNode.put(key, value);
             }
 

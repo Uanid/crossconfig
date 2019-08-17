@@ -4,5 +4,4 @@ public interface FormatterProviderService {
 
     FormatterFactory getFormatterFactory();
 
-    FormatterType getFormatterType();
 }

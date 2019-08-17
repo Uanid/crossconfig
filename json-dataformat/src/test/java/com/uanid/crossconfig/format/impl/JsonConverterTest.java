@@ -21,7 +21,7 @@ public class JsonConverterTest {
     private String json2;
     private String json3;
     private ObjectMapper objectMapper;
-    private JsonNodeConverter converter;
+    private JsonDefaultRecursiveConverter converter;
 
     @Before
     public void before() {
@@ -32,7 +32,7 @@ public class JsonConverterTest {
         //language=JSON
         json3 = "[{\"aaa\":{\"bb\":\"cc\", \"123\": \"dd\"}},\"just-value\", [\"just-list\", \"just-list-2\"]]";
         objectMapper = new ObjectMapper();
-        converter = new JsonNodeConverter();
+        converter = new JsonDefaultRecursiveConverter();
     }
 
     @Test

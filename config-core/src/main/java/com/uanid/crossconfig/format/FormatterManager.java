@@ -17,41 +17,41 @@ public final class FormatterManager {
         return SingletonHolder.INSTANCE;
     }
 
-    private CachedRepository<FormatterProviderService> repository;
+    private CachedRepository<FormatterFactory> repository;
 
     private FormatterManager() {
         this.repository = new CachedRepository<>(new ArrayList<>(), new CachedRepository.MatchFunction<>(this::compareFunction));
         this.initRegisterFormatter();
     }
 
-    private MatchType compareFunction(String keyword, FormatterProviderService formatterProvider) {
-        FormatterType type = formatterProvider.getFormatterType();
+    private MatchType compareFunction(String keyword, FormatterFactory factory) {
+        FormatterType type = factory.getFormatterType();
         return MatchType.compareToMatchType(keyword, type.getName(), type.getAlias());
     }
 
     private void initRegisterFormatter() {
         ServiceLoader<FormatterProviderService> services = ServiceLoader.load(FormatterProviderService.class);
         for (FormatterProviderService service : services) {
-            this.registerFormatter(service);
+            this.registerFormatterFactory(service.getFormatterFactory());
         }
     }
 
-    public synchronized void registerFormatter(FormatterProviderService provider) {
+    public synchronized void registerFormatterFactory(FormatterFactory provider) {
         repository.registerItem(provider);
     }
 
-    public FormatterProviderService getFormatterProvider() {
-        return this.getFormatterProvider(DEFAULT_FORMATTER_NAME, false);
+    public Formatter getFormatter() {
+        return this.getFormatter(DEFAULT_FORMATTER_NAME, false);
     }
 
-    public FormatterProviderService getFormatterProvider(String formatterName) {
-        return this.getFormatterProvider(formatterName, true);
+    public Formatter getFormatter(String formatterName) {
+        return this.getFormatter(formatterName, true);
     }
 
     //implicitlyMatch : 암시적 매칭 사용 여부
-    public synchronized FormatterProviderService getFormatterProvider(String formatterName, boolean implicitlyMatch) {
+    public synchronized Formatter getFormatter(String formatterName, boolean implicitlyMatch) {
         MatchType atLeastMatchType = implicitlyMatch ? MatchType.ALIAS : MatchType.PRIMARY;
-        return repository.searchItem(formatterName, atLeastMatchType);
+        return repository.searchItem(formatterName, atLeastMatchType).newInstance();
     }
 
     private static class SingletonHolder {

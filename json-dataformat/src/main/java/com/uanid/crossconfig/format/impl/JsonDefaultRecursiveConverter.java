@@ -4,15 +4,15 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.ValueNode;
-import com.uanid.crossconfig.format.convert.NodeConverter;
+import com.uanid.crossconfig.format.convert.DefaultRecursiveConverter;
 
 /**
  * @author uanid
  * @since 2019-06-15
  */
-public class JsonNodeConverter extends NodeConverter<JsonNode, ValueNode, ArrayNode, ObjectNode> {
+public class JsonDefaultRecursiveConverter extends DefaultRecursiveConverter<JsonNode, ValueNode, ArrayNode, ObjectNode> {
 
-    public JsonNodeConverter() {
+    public JsonDefaultRecursiveConverter() {
         super(new JsonNodeDialect());
     }
 

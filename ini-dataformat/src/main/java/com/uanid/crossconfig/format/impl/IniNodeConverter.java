@@ -14,14 +14,14 @@ public class IniNodeConverter implements Converter<Ini, ConfigNode> {
         TreeConfigNode treeConfigNode = new TreeConfigNode();
         for (String sectionName : ini.keySet()) {
             Profile.Section section = ini.get(sectionName);
-            TreeConfigNode sectionNode = convertSection(section);
+            TreeConfigNode sectionNode = this.convertSectionToConfigNode(section);
             treeConfigNode.put(new PrimitiveConfigNode<>(sectionName), sectionNode);
         }
 
         return treeConfigNode;
     }
 
-    private TreeConfigNode convertSection(Profile.Section section) {
+    private TreeConfigNode convertSectionToConfigNode(Profile.Section section) {
         TreeConfigNode sectionNode = new TreeConfigNode();
         for (String itemKey : section.childrenNames()) {
             String itemValue = section.get(itemKey);
