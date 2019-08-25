@@ -7,7 +7,7 @@ import com.uanid.crossconfig.util.Validate;
  * @author uanid
  * @since 2019-06-21
  *
- * 멤버 변수들은 전부 null을 허용하지 않음
+ * ResourceUri 정책: 멤버 변수들은 전부 null을 허용하지 않음
  */
 public class ResourceUri {
 

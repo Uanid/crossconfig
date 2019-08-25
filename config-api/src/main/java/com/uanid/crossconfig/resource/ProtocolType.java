@@ -3,6 +3,10 @@ package com.uanid.crossconfig.resource;
 import com.uanid.crossconfig.common.Type;
 import com.uanid.crossconfig.util.Validate;
 
+/**
+ * @author uanid
+ * @since 2019-07-07
+ */
 public class ProtocolType implements Type {
 
     private String name;

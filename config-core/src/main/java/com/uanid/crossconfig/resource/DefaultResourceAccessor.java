@@ -58,26 +58,26 @@ public class DefaultResourceAccessor implements ResourceAccessor {
 
     @Override
     public ResourceUri getResourceUri() {
-        return null;
+        return resourceUri;
     }
 
     @Override
     public RawData load() {
-        return null;
+        return protocolHandler.load(resourceUri);
     }
 
     @Override
-    public RawData save() {
-        return null;
+    public void save(RawData data) {
+        protocolHandler.save(resourceUri, data);
     }
 
     @Override
-    public RawData saveManually(ResourceUri resourceUri) {
-        return null;
+    public void saveManually(ResourceUri resourceUri, RawData data) {
+        protocolHandler.save(resourceUri, data);
     }
 
     @Override
     public ProtocolType getProtocolType() {
-        return null;
+        return protocolHandler.getProtocolType();
     }
 }

@@ -2,7 +2,7 @@ package com.uanid.crossconfig.resource.impl;
 
 import com.uanid.crossconfig.rawdata.ByteRawData;
 import com.uanid.crossconfig.rawdata.RawData;
-import com.uanid.crossconfig.resource.ProtocolHandler;
+import com.uanid.crossconfig.resource.DefaultProtocolHandler;
 import com.uanid.crossconfig.resource.ProtocolType;
 import com.uanid.crossconfig.resource.ResourceUri;
 import com.uanid.crossconfig.util.CommonUtils;
@@ -18,7 +18,7 @@ import java.util.Base64;
  * @author uanid
  * @since 2019-06-25
  */
-public class HttpHandler extends ProtocolHandler {
+public class HttpHandler extends DefaultProtocolHandler {
 
     public HttpHandler(ProtocolType protocolType) {
         super(protocolType);
